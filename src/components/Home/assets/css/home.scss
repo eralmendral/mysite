@@ -1,0 +1,120 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+
+* {
+  font-family: 'Raleway', sans-serif;
+}
+
+
+.sectionTitle {
+  font-size: 54px;
+  font-weight: bolder;
+  background: -webkit-linear-gradient(
+    45deg,
+    rgb(194, 60, 7),
+    rgb(195, 41, 93)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  z-index: 999;
+}
+
+
+// Landing Page
+.landing {
+  display: flex;
+  height: 100vh;
+  background: linear-gradient(45deg, rgb(2, 1, 1), rgb(31, 29, 29));
+}
+
+.landingText {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .introduction {
+    
+    font-size: 54px;
+    font-weight: bolder;
+    background: -webkit-linear-gradient(
+      45deg,
+      rgb(194, 60, 7),
+      rgb(195, 41, 93)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    z-index: 999;
+  }
+
+  .landingUrls {
+    margin-top: 30px;
+    z-index: 999;
+    ul {
+      list-style-type: none;
+    }
+
+    li {
+      display: inline;
+       a {
+
+        margin: 40px 20px;
+        text-decoration: none;
+        font-weight: bolder;
+        font-family: 'Raleway', sans-serif;
+        font-size: 24px;
+        color: #fff;
+        z-index: 999;
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: underline;
+        }
+      } 
+    }
+  }
+}
+
+
+
+
+
+// Scrollbar design
+/* width */
+::-webkit-scrollbar {
+    width: 2px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    border-radius: 4px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(41, 5, 5); 
+    border-radius: 1;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #cc1a1a; 
+  }
+
+
+  // Footer design
+  .footer {
+    display: flex;
+    height: 80px;
+    width: 100%;
+    background: #000;
+    justify-content: center;
+    align-items: center;
+
+    .footer-text {
+      color: #cc1a1a
+    }
+  }
