@@ -1,8 +1,10 @@
 import React from 'react';
-
+import ParticleEffect from '../Home/Particles.component'
 const LoginComponent = () => (
     <div>
-        Login
+      <div className="landing">
+        <ParticleEffect/>
+        </div>
     </div>
 )
 

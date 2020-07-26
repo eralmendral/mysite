@@ -1,72 +1,59 @@
 import React from 'react';
 import Particles from 'react-particles-js';
-import reactlogo from './assets/images/reactlogo.png'
-import angularlogo from './assets/images/angularlogo.png'
-import vuelogo from './assets/images/vuelogo.png'
-import sveltelogo from './assets/images/sveltelogo.png'
 
 const ParticleEffect = () => (
     <Particles
-    style={{ position: 'absolute'}}
+	style={{position: 'absolute'}}
     params={{
 	    "particles": {
 	        "number": {
-	            "value": 12,
+	            "value": 160,
 	            "density": {
-	                "enable": true,
-	                "value_area": 1000
+	                "enable": false
+	            }
+	        },
+	        "size": {
+	            "value": 3,
+	            "random": true,
+	            "anim": {
+	                "speed": 4,
+	                "size_min": 0.3
 	            }
 	        },
 	        "line_linked": {
 	            "enable": false
 	        },
 	        "move": {
-	            "speed": 2,
+	            "random": true,
+	            "speed": 1,
+	            "direction": "top",
 	            "out_mode": "out"
-	        },
-	        "shape": {
-	            "type": [
-	                "image",
-	                "circle"
-	            ],
-	            "image": [
-	                {
-	                    "src": `${reactlogo}`,
-	                    "height": 15,
-	                    "width": 23
-	                },
-	                {
-                        "src": `${angularlogo}` ,
-	                    "height": 15,
-	                    "width": 15
-	                },
-	                // {
-	                //     "src": `${vuelogo}`,
-	                //     "height": 15,
-	                //     "width": 15
-                    // },
-                    // {
-	                //     "src": `${sveltelogo}`,
-	                //     "height": 15,
-	                //     "width": 15
-	                // }
-	            ]
-	        },
-	        "color": {
-	            "value": "#CCC"
-	        },
-	        "size": {
-	            "value": 30,
-	            "random": false,
-	            "anim": {
-	                "enable": true,
-	                "speed": 4,
-	                "size_min": 10,
-	                "sync": false
-	            }
 	        }
 	    },
-	    "retina_detect": true
+	    "interactivity": {
+	        "events": {
+	            "onhover": {
+	                "enable": true,
+	                "mode": "bubble"
+	            },
+	            "onclick": {
+	                "enable": true,
+	                "mode": "repulse"
+	            }
+	        },
+	        "modes": {
+	            "bubble": {
+	                "distance": 250,
+	                "duration": 2,
+	                "size": 0,
+	                "opacity": 0
+	            },
+	            "repulse": {
+	                "distance": 400,
+	                "duration": 4
+	            }
+	        }
+	    }
 	}} />
 )
 

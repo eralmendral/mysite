@@ -36,7 +36,7 @@ const ProjectsComponent = () => (
                 </Card.Body>
             </Card>
 
-            
+{/*             
             <Card className='project-card' style={{ width: '18rem' }}>
                 <Card.Img variant="top" src="https://images.pexels.com/photos/4775426/pexels-photo-4775426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" />
                 <Card.Body>
@@ -59,7 +59,7 @@ const ProjectsComponent = () => (
                     </Card.Text>
                     <Button variant="primary">Go somewhere</Button>
                 </Card.Body>
-            </Card>
+            </Card> */}
         </Container>
     </div>
 )
