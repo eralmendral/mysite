@@ -8,8 +8,8 @@ const ContactComponent  = () => (
         <div className="contact-info">
             <ul>
                 <li>+639751321678</li>
-                <li>ealmendral@gmail.com</li>
-                <li>fb.com/arquiasdf</li>
+                <li><a href="mailto: ealmendral@gmail.com">ealmendral@gmail.com</a></li>
+                <li><a href="https://fb.com/arquiasdf" target="_blank">fb.com/arquiasdf</a></li>
             </ul>
         </div>
 
@@ -35,7 +35,7 @@ const ContactComponent  = () => (
                 <Row>
                     <Col sm={12}>
                         <Form.Group controlId="clientMessage">
-                            <Form.Control className="contactfield"  as="textarea" rows="5" placeholder="Enter Message"/>
+                            <Form.Control className="contactfield"  as="textarea" rows="5" placeholder="Enter Message" res/>
                         </Form.Group>
                     </Col>
                 </Row>

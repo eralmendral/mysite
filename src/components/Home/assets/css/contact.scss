@@ -3,9 +3,7 @@
     flex-direction: column;
     height: 70vh;
     width: 100%;
-   
-  
-    background: rgb(255, 255, 255);
+    background: rgb(17, 1, 1);
 
     .contact-info {
         align-self: center;
@@ -16,6 +14,11 @@
                 display: inline;
                 margin: 0 30px;
                 font-weight: bold;
+                color: #fff;
+                
+                a {
+                    color: #fff;
+                }
             }
         }
     }
@@ -33,7 +36,7 @@
         border-radius: 0px;
         background: -webkit-linear-gradient(
             45deg,
-            rgb(194, 60, 7),
+            rgb(128, 58, 30),
             rgb(195, 41, 93)
             );
         border:none;
