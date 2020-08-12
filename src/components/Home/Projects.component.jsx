@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { Container, Card, Button } from 'react-bootstrap'
+import { Container, Card } from 'react-bootstrap'
 
 const ProjectsComponent = (props) =>{
     const showProject = (e) => {

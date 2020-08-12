@@ -8,7 +8,7 @@ const ContactComponent  = () => (
             <ul>
                 <li>+639751321678</li>
                 <li><a href="mailto: ealmendral@gmail.com">ealmendral@gmail.com</a></li>
-                <li><a href="https://fb.com/arquiasdf" target="_blank">fb.com/arquiasdf</a></li>
+                <li><a href="https://fb.com/arquiasdf" rel="noopener noreferrer" target="_blank">fb.com/arquiasdf</a></li>
             </ul>
         </div>
 
@@ -25,7 +25,7 @@ const ContactComponent  = () => (
 
                     <Col xs={12} sm={6}>
                         <Form.Group className="mx-1 rounded-0" controlId="clientEmail">
-                            <Form.Control className="contactfield" type="email" placeholder="Enter Email" />
+                            <Form.Control className="contactfield" type="email" placeholder="Enter Email"/>
                         </Form.Group>
                     </Col>
                 </Row>
@@ -34,14 +34,14 @@ const ContactComponent  = () => (
                 <Row>
                     <Col sm={12}>
                         <Form.Group controlId="clientMessage">
-                            <Form.Control className="contactfield"  as="textarea" rows="5" placeholder="Enter Message" res/>
+                            <Form.Control className="contactfield"  as="textarea" rows="5" placeholder="Enter Message"/>
                         </Form.Group>
                     </Col>
                 </Row>
 
-                    <Button className="contactSubmit"  type="submit">
-                        Submit
-                    </Button>
+                <Button className="contactSubmit"  type="submit">
+                    Submit
+                </Button>
                 </Form>
         </Container>
         </div>

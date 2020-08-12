@@ -2,18 +2,22 @@ import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { Layout } from "antd";
 import "./dashboard.scss";
+import 'react-toastify/dist/ReactToastify.css';
 import Sidebar from "./components/Sidebar.component";
 
 import ProjectList from "./subpages/projects/ProjectList";
 import ClientList from './subpages/clients/ClientList'
-import DashboardHome from "./subpages/home/DashboardHome";
+import ClientAddEdit from './subpages/clients/ClientAddEdit';
 
+import DashboardHome from "./subpages/home/DashboardHome";
+import { ToastContainer } from 'react-toastify';
 const { Header, Content } = Layout;
 class Dashboard extends React.Component {
   render() {
     return (
       <Layout style={{ minHeight: "100vh" }}>
         <Sidebar />
+        <ToastContainer />
         <Layout className="site-layout">
           <Header className="site-layout-background" style={{ padding: 0 }} />
           <Content style={{ margin: "0 16px" }}>
@@ -30,9 +34,9 @@ class Dashboard extends React.Component {
                 <Route path={`${this.props.match.url}/projects/edit/:projectId`} component={ProjectList} />
                 <Route path={`${this.props.match.url}/projects/:projectId`} component={this.projects} />
 
-                <Route path={`${this.props.match.url}/clients`} component={ClientList} />
-                <Route path={`${this.props.match.url}/clients/add`} component={ClientList} />
-                <Route path={`${this.props.match.url}/clients/edit/:clientId`} component={ClientList} />
+                <Route exact path={`${this.props.match.url}/clients`} component={ClientList} />
+                <Route path={`${this.props.match.url}/clients/add`} component={ClientAddEdit} />
+                <Route path={`${this.props.match.url}/clients/edit/:clientId`} component={ClientAddEdit} />
                 <Route path={`${this.props.match.url}/clients/:clientId`} component={this.projects} />
 
                 <Route path={`${this.props.match.url}/settings`} component={ProjectList} />
@@ -40,6 +44,7 @@ class Dashboard extends React.Component {
               </Switch>
             </div>
           </Content>
+         
         </Layout>
       </Layout>
     );

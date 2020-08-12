@@ -15,7 +15,7 @@ const LoginComponent = (props) => {
   return (
     <div>
       <div className="landing">
-      <Link to="/"> <i class="fa fa-arrow-left fa-2x text-white homelink" aria-hidden="true"></i></Link>
+      <Link to="/"> <i className="fa fa-arrow-left fa-2x text-white homelink" aria-hidden="true"></i></Link>
         <ParticleEffect />
         <div className="form-wrapper w-100 d-flex align-items-center justify-content-center text-white">
           <div className="form">

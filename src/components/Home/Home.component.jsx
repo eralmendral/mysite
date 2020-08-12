@@ -11,7 +11,7 @@ import FooterComponent from './Footer.component';
 const HomeComponent = () => (
        <div className="home">
            <div className="landing">
-                <Link to="/login"> <i class="fa fa-user-circle fa-2x dashboardlink" aria-hidden="true"></i></Link>
+                <Link to="/login"> <i className="fa fa-user-circle fa-2x dashboardlink" aria-hidden="true"></i></Link>
                 <ParticleEffect/>
                     <div className="landingText">
                         <ReactTypingEffect
@@ -21,12 +21,11 @@ const HomeComponent = () => (
                             eraseDelay='2500'
                             typingDelay='5000ms'
                             />
-
                         <div className="landingUrls">
                             <ul>
-                                <li><a href="https://github.com/eralmendral" target="_blank">Github</a></li>
-                                <li><a href="https://www.linkedin.com/in/eric-almendral-6a13371aa/" target="_blank">Linkedin</a></li>
-                                <li><a href={resume}  target="_blank">Resume</a></li>
+                                <li><a href="https://github.com/eralmendral" rel="noopener noreferrer" target="_blank">Github</a></li>
+                                <li><a href="https://www.linkedin.com/in/eric-almendral-6a13371aa/" rel="noopener noreferrer" target="_blank">Linkedin</a></li>
+                                <li><a href={resume}  rel="noopener noreferrer" target="_blank">Resume</a></li>
                             </ul>
                         </div>
                     </div>

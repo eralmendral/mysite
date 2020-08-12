@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { withRouter, Link } from "react-router-dom";
 import { Layout, Menu } from "antd";
+import logo from './ea.png';
+
 import {
   DesktopOutlined,
   PieChartOutlined,
@@ -22,7 +24,9 @@ function Sidebar(props) {
 
   return (
     <Sider collapsible collapsed={collapse} onCollapse={onCollapse}>
-      <div className="logo" />
+      <div className="logo" style={{height: 'auto'}}>
+      <img src={logo} className="img-fluid" alt="logo"/>
+      </div>
       <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
         <Menu.Item key="1" icon={<PieChartOutlined />}>
           <Link to="/dashboard">Dashboard</Link>
