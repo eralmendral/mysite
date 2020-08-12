@@ -1,5 +1,4 @@
 import React from 'react'
-import './assets/css/contact.scss';
 import { Row, Col, Form, Button, Container } from 'react-bootstrap'
 
 const ContactComponent  = () => (

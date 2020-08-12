@@ -1,8 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import ParticleEffect from './Particles.component'
 import ReactTypingEffect from 'react-typing-effect';
 import resume from './assets/document/myresume.pdf';
-import './assets/css/home.scss'
 
 import ProjectsComponent from './Projects.component';
 import ContactComponent from './Contact.component';
@@ -11,12 +11,13 @@ import FooterComponent from './Footer.component';
 const HomeComponent = () => (
        <div className="home">
            <div className="landing">
+                <Link to="/login"> <i class="fa fa-user-circle fa-2x dashboardlink" aria-hidden="true"></i></Link>
                 <ParticleEffect/>
                     <div className="landingText">
                         <ReactTypingEffect
                             className="introduction"
                             text={["Hello, I'm Eric.", "I design and build software"]}
-                            speed='400ms'
+                            speed='300ms'
                             eraseDelay='2500'
                             typingDelay='5000ms'
                             />

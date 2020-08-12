@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './assets/css/projects.scss'
 import { Container, Card, Button } from 'react-bootstrap'
 
 const ProjectsComponent = () => (
