@@ -1,6 +1,6 @@
 import React from "react";
-import { Route, BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
-import { Layout, Breadcrumb } from "antd";
+import { Route, Switch, Redirect } from "react-router-dom";
+import { Layout } from "antd";
 import "./dashboard.scss";
 import Sidebar from "./components/Sidebar.component";
 
@@ -9,7 +9,7 @@ import ClientList from './subpages/clients/ClientList'
 import DashboardHome from "./subpages/home/DashboardHome";
 
 const { Header, Content } = Layout;
-class SiderDemo extends React.Component {
+class Dashboard extends React.Component {
   render() {
     return (
       <Layout style={{ minHeight: "100vh" }}>
@@ -46,4 +46,4 @@ class SiderDemo extends React.Component {
   }
 }
 
-export default SiderDemo;
+export default Dashboard;
