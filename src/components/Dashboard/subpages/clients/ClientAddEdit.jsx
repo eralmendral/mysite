@@ -2,31 +2,47 @@ import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import { Form, Input, Button, DatePicker } from "antd";
 import { UserOutlined, MailOutlined, PhoneOutlined } from "@ant-design/icons";
-import { addClient } from "../../../../redux/clients/client.actions";
+import { addClient, updateClient } from "../../../../redux/clients/client.actions";
 import { connect } from "react-redux";
 import { toast } from "react-toastify";
+import { selectClient } from "../../../../redux/clients/client.selectors";
 
 function ClientAddEdit(props) {
-  const [date, setDate] = useState(new Date());
   let urlParts = props.match.path.split("/");
   let mode = urlParts.pop() === "add" ? "Add" : "Edit";
+
+  const [date, setDate] = useState(mode === 'Edit' ? props.client ? props.client.date.toDate() : new Date() : null);
+  if(mode === 'Edit' && !props.client) {
+    props.history.push('/dashboard/clients')
+  } 
+  
   const [form] = Form.useForm();
 
   const onFinish = (values) => {
-    // dispatch action here to save data to firestore
     const data = {
       ...values,
       date: date,
     };
 
     // dispatch action here
-    props.addClient(data);
-    form.resetFields();
-    toast.success("Client Deleted!", { closeButton: false ,  hideProgressBar: true });
+    if(mode === 'Add') {
+      props.addClient(data);
+      toast.success("Client Added!", { closeButton: false ,  hideProgressBar: true });
+      form.resetFields();
+      props.history.push('/dashboard/clients')
+    }
+
+    if(mode === 'Edit') {
+      data.id = props.client.id;
+      console.log(data);
+      props.updateClient(data);
+      toast.success("Client Updated!", { closeButton: false ,  hideProgressBar: true });
+    }
+   
   };
 
   const onOkDate = (value) => {
-    setDate(value.toDate());
+    setDate(value ? value.toDate() : null);
   };
 
   return (
@@ -36,9 +52,12 @@ function ClientAddEdit(props) {
         <div className="col-sm-6">
           <Form
             form={form}
-            name="normal_login"
             className="login-form"
-            initialValues={{ remember: true }}
+            initialValues={props.client ? { 
+              name: mode === 'Edit' ? props.client.name : '',
+              email: mode === 'Edit' ? props.client.email : '',
+              phone: mode === 'Edit' ? props.client.phone : ''
+            } : null}
             onFinish={onFinish}
           >
             <Form.Item
@@ -78,7 +97,7 @@ function ClientAddEdit(props) {
             </Form.Item>
 
             <Form.Item>
-              <DatePicker showTime onOk={onOkDate} placeholder="Start Date" />
+              <DatePicker size='medium' onChange={onOkDate} placeholder={date ? date : 'Select a date'} format='MMM DD YYYY' />
             </Form.Item>
 
             <Form.Item>
@@ -93,8 +112,14 @@ function ClientAddEdit(props) {
   );
 }
 
+const mapStateToProps = (state, ownProps) => ({
+  client: selectClient(ownProps.match.params.clientId)(state)
+})
+
+
 const mapDispatchToProps = (dispatch) => ({
   addClient: (payload) => dispatch(addClient(payload)),
+  updateClient: (payload) => dispatch(updateClient(payload))
 });
 
-export default connect(null, mapDispatchToProps)(withRouter(ClientAddEdit));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ClientAddEdit));

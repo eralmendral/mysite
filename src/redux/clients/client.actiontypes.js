@@ -5,7 +5,8 @@ const ClientActionTypes = {
     FETCH_CLIENTS_SUCCESS: 'FETCH_CLIENTS_SUCCESS',
 
     ADD_CLIENT: 'ADD_CLIENT',
-    DELETE_CLIENT: 'DELETE_CLIENT'
+    DELETE_CLIENT: 'DELETE_CLIENT',
+    UPDATE_CLIENT: 'UPDATE_CLIENT'
 }
 
 export default ClientActionTypes;

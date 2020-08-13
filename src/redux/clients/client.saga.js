@@ -5,15 +5,35 @@ import { fetchClientsFailure, fetchClientsSuccess } from './client.actions';
 import { rsf } from '../../config/fbConfig';
 
 
-export function* deleteClientAsync(action){
+
+
+
+export function* deleteClientAsync(action) {
     yield call(rsf.firestore.deleteDocument, 'clients/' + action.payload);
     yield call(fetchClientsAsync)
 }
 
-export function* deleteClient(){
+export function* deleteClient() {
     yield takeLatest(
         ClientActionTypes.DELETE_CLIENT,
         deleteClientAsync
+    )
+}
+
+export function* updateClientAsync(action) {
+    console.log('action paayload:', action.payload)
+    yield call(
+        rsf.firestore.setDocument,
+        'clients/' + action.payload.id,
+        action.payload
+    );
+    yield call(fetchClientsAsync)
+}
+
+export function* updateClient() {
+    yield takeLatest(
+        ClientActionTypes.UPDATE_CLIENT,
+        updateClientAsync
     )
 }
 
@@ -63,5 +83,5 @@ export function* fetchClientStart() {
 }
 
 export function* clientSaga() {
-    yield all([call(fetchClientStart), call(addClient), call(deleteClient)])
+    yield all([call(fetchClientStart), call(addClient), call(deleteClient), call(updateClient)])
 }

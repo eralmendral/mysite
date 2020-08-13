@@ -37,7 +37,6 @@ class Dashboard extends React.Component {
                 <Route exact path={`${this.props.match.url}/clients`} component={ClientList} />
                 <Route path={`${this.props.match.url}/clients/add`} component={ClientAddEdit} />
                 <Route path={`${this.props.match.url}/clients/edit/:clientId`} component={ClientAddEdit} />
-                <Route path={`${this.props.match.url}/clients/:clientId`} component={this.projects} />
 
                 <Route path={`${this.props.match.url}/settings`} component={ProjectList} />
                 <Redirect from="*" to='/' />

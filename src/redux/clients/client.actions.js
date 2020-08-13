@@ -19,6 +19,11 @@ export const addClient = (client) => ({
     payload: client
 });
 
+export const updateClient = (client) => ({
+    type: ClientActionTypes.UPDATE_CLIENT,
+    payload: client
+})
+
 export const deleteClient = (clientId) => ({
     type: ClientActionTypes.DELETE_CLIENT,
     payload: clientId

@@ -1,4 +1,6 @@
 import React from "react";
+import { withRouter, Link } from 'react-router-dom';
+
 import { Table, Button, Space , Modal } from "antd";
 import { connect } from "react-redux";
 import { selectClientList } from "../../../../redux/clients/client.selectors";
@@ -6,16 +8,17 @@ import {
   UserAddOutlined,
   EditOutlined,
   DeleteOutlined,
+  ExclamationCircleOutlined
 } from "@ant-design/icons";
-import { Link } from "react-router-dom";
-import moment from 'moment';
-import { ExclamationCircleOutlined } from '@ant-design/icons';
+
 import { deleteClient } from '../../../../redux/clients/client.actions'
+
+import moment from 'moment';
 import { toast } from "react-toastify";
 
 const { confirm } = Modal;
 
-function ClientList({ clients, deleteClient }) {
+function ClientList({ match, history, clients, deleteClient }) {
 
   let data = [];
   for(let key in clients) {
@@ -40,7 +43,7 @@ function ClientList({ clients, deleteClient }) {
       cancelText: 'No',
       onOk() {
         deleteClient(record.id);
-        toast.success("Client Added!", { closeButton: false ,  hideProgressBar: true });
+        toast.success("Client Deleted!", { closeButton: false ,  hideProgressBar: true });
       },
       onCancel() {
         console.log('Cancel');
@@ -74,10 +77,10 @@ function ClientList({ clients, deleteClient }) {
       key: "action",
       render: (text, record) => (
         <Space size="middle">
-          <Button type="primary" icon={<EditOutlined />} size={"small"}>
+          <Button type="primary" icon={<EditOutlined />} size={"small"} onClick={ () => {  history.push(match.path + '/edit/' + record.id) }}>
             Edit
           </Button>
-          <Button type="default" icon={<DeleteOutlined />} size={"small"} onClick={() => { showDeleteConfirm(record)}}>
+          <Button type="danger" icon={<DeleteOutlined />} size={"small"} onClick={() => { showDeleteConfirm(record)}}>
             Remove
           </Button>
         </Space>
@@ -93,7 +96,7 @@ function ClientList({ clients, deleteClient }) {
           <Link to="clients/add">
             <Button
               className="align-self-end"
-              type="primary"
+              type="default"
               icon={<UserAddOutlined />}
               size={"medium"}
             >
@@ -120,4 +123,4 @@ const mapDispatchToProps = dispatch => ({
   deleteClient: (id) => (dispatch(deleteClient(id)))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(ClientList);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ClientList));
