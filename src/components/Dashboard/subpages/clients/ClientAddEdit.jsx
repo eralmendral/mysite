@@ -22,7 +22,7 @@ function ClientAddEdit(props) {
     // dispatch action here
     props.addClient(data);
     form.resetFields();
-    toast.success("Client Added!", { closeButton: false ,  hideProgressBar: true });
+    toast.success("Client Deleted!", { closeButton: false ,  hideProgressBar: true });
   };
 
   const onOkDate = (value) => {
