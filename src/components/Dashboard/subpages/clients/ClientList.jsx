@@ -77,12 +77,8 @@ function ClientList({ match, history, clients, deleteClient }) {
       key: "action",
       render: (text, record) => (
         <Space size="middle">
-          <Button type="primary" icon={<EditOutlined />} size={"small"} onClick={ () => {  history.push(match.path + '/edit/' + record.id) }}>
-            Edit
-          </Button>
-          <Button type="danger" icon={<DeleteOutlined />} size={"small"} onClick={() => { showDeleteConfirm(record)}}>
-            Remove
-          </Button>
+          <EditOutlined onClick={ () => {  history.push(match.path + '/edit/' + record.id) }}/>
+          <DeleteOutlined  onClick={() => { showDeleteConfirm(record)}}/>
         </Space>
       ),
     },
