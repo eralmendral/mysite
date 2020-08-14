@@ -52,7 +52,6 @@ function ClientAddEdit(props) {
         <div className="col-sm-6">
           <Form
             form={form}
-            className="login-form"
             initialValues={props.client ? { 
               name: mode === 'Edit' ? props.client.name : '',
               email: mode === 'Edit' ? props.client.email : '',
@@ -62,7 +61,7 @@ function ClientAddEdit(props) {
           >
             <Form.Item
               name="name"
-              rules={[{ required: true, message: "Please name of client!" }]}
+              rules={[{ required: true, message: "Please input name of client!" }]}
             >
               <Input
                 prefix={<UserOutlined className="site-form-item-icon" />}

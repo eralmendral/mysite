@@ -1,6 +1,7 @@
-import firebase from 'firebase'
-import '@firebase/firestore'
-import ReduxSagaFirebase from 'redux-saga-firebase'
+import firebase from "firebase"
+import "firebase/storage";
+import "@firebase/firestore"
+import ReduxSagaFirebase from "redux-saga-firebase"
 
 export const firebaseConfig = {
     apiKey: "AIzaSyBg_9g0fSqQ6asP68w81pr5GY1dosbSOsM",
@@ -14,5 +15,5 @@ export const firebaseConfig = {
   };
 
   const firebaseApp = firebase.initializeApp(firebaseConfig)
-
+  export const storage = firebase.storage();
   export const rsf = new ReduxSagaFirebase(firebaseApp)

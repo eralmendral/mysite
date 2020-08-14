@@ -1,4 +1,5 @@
 @import '~antd/dist/antd.css';
+@import '../../theme.scss';
 
 #components-layout-demo-custom-trigger .trigger {
     font-size: 18px;
@@ -9,7 +10,7 @@
   }
   
   #components-layout-demo-custom-trigger .trigger:hover {
-    color: #1890ff;
+    color: #740917;
   }
   
   #components-layout-demo-custom-trigger .logo {
@@ -26,3 +27,6 @@
       background: rgb(32, 30, 30);
       height: 200px;
   }
+
+  
+  

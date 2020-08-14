@@ -12,7 +12,7 @@ import {
 import { selectProjectList } from "../../../../redux/projects/project.selectors";
 import moment from 'moment';
 
-function ProjectList({ projects }) {
+function ProjectList({ projects, match }) {
  let projectList = [];
  for(let key in projects){
      let obj = projects[key];
@@ -64,7 +64,7 @@ function ProjectList({ projects }) {
       <div className="row mb-3">
         <div className="col-sm-12 d-flex flex-row justify-content-between">
           <h3>Projects</h3>
-          <Link to="project/add">
+          <Link to={`${match.path}/add`}>
             <Button
               className="align-self-end"
               type="default"
