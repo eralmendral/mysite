@@ -4,10 +4,6 @@ import ClientActionTypes from './client.actiontypes';
 import { fetchClientsFailure, fetchClientsSuccess } from './client.actions';
 import { rsf } from '../../config/fbConfig';
 
-
-
-
-
 export function* deleteClientAsync(action) {
     yield call(rsf.firestore.deleteDocument, 'clients/' + action.payload);
     yield call(fetchClientsAsync)
@@ -21,7 +17,6 @@ export function* deleteClient() {
 }
 
 export function* updateClientAsync(action) {
-    console.log('action paayload:', action.payload)
     yield call(
         rsf.firestore.setDocument,
         'clients/' + action.payload.id,

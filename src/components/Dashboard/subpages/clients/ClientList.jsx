@@ -23,7 +23,7 @@ function ClientList({ match, history, clients, deleteClient }) {
   let data = [];
   for(let key in clients) {
       let obj = clients[key]
-      let date = obj.hasOwnProperty('date') ?  moment(obj.date.toDate()).format('MMM. DD YYYY') : null;
+      let date = obj.hasOwnProperty('date') ? obj.date ?  moment(obj.date.toDate()).format('MMM. DD YYYY') : null : null;
       let client = {
         ...obj,
         key: obj.id,
@@ -33,7 +33,6 @@ function ClientList({ match, history, clients, deleteClient }) {
   }
 
   function showDeleteConfirm(record) {
-    console.log('value:',record); 
     confirm({
       title: 'Are you sure delete this client?',
       icon: <ExclamationCircleOutlined />,

@@ -66,6 +66,7 @@ function ProjectAddEdit(props) {
             .child(`/thumbnail/${id}${image.name}`)
             .getDownloadURL()
             .then((url) => {
+              console.log()
               setThumbnailUrl(url);
             });
         }

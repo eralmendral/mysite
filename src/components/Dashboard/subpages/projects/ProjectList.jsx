@@ -7,12 +7,41 @@ import {
   EditOutlined,
   DeleteOutlined,
   DesktopOutlined,
+  ExclamationCircleOutlined
 } from "@ant-design/icons";
 
+import { toast } from "react-toastify";
+
+
+
 import { selectProjectList } from "../../../../redux/projects/project.selectors";
+import { deleteProject }  from "../../../../redux/projects/project.actions";
 import moment from 'moment';
 
-function ProjectList({ projects, match }) {
+const { confirm } = Modal;
+
+function ProjectList({ projects, match, deleteProject }) {
+
+  function showDeleteConfirm(record) {
+    console.log('value:',record); 
+    confirm({
+      title: 'Are you sure delete this project?',
+      icon: <ExclamationCircleOutlined />,
+      content: 'Some descriptions',
+      okText: 'Yes',
+      okType: 'danger',
+      cancelText: 'No',
+      onOk() {
+        deleteProject(record);
+        toast.success("Project Deleted!", { closeButton: false ,  hideProgressBar: true });
+      },
+      onCancel() {
+        console.log('Cancel');
+      },
+    });
+  }
+
+
  let projectList = [];
  for(let key in projects){
      let obj = projects[key];
@@ -53,11 +82,15 @@ function ProjectList({ projects, match }) {
         <Space size="middle">
           <EyeOutlined />
           <EditOutlined />
-          <DeleteOutlined />
+          {/* <DeleteOutlined  /> */}
+
+          <Button type='danger' onClick={() => showDeleteConfirm(record)}>Delete</Button>
         </Space>
       ),
     },
   ];
+
+
 
   return (
     <div>
@@ -90,7 +123,9 @@ const mapStateToProps = (state) => ({
   projects: selectProjectList(state),
 });
 
-const mapDispatchToProps = (dispatch) => ({});
+const mapDispatchToProps = (dispatch) => ({
+  deleteProject: (project) => dispatch(deleteProject(project))
+});
 
 export default connect(
   mapStateToProps,
