@@ -245,6 +245,10 @@ a:hover, a:active {
     display: block;
     margin: 0 auto;
   }
+
+   :disabled {
+    background: grey !important;
+  }
 }
 
 // Login

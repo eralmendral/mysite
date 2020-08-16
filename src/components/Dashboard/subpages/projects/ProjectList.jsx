@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import {
   EyeOutlined,
   EditOutlined,
-  DeleteOutlined,
   DesktopOutlined,
   ExclamationCircleOutlined
 } from "@ant-design/icons";

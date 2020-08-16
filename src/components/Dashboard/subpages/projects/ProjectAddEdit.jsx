@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Form, Input, Button, DatePicker, Upload, message } from "antd";
+import React, { useState } from "react";
+import { Form, Input, Button, DatePicker, Upload } from "antd";
 import {
   UserOutlined,
   DesktopOutlined,
@@ -32,7 +32,7 @@ function ProjectAddEdit(props) {
     multiple: false,
     onChange(info) {
       console.log("debug upload:", info);
-      const { status } = info.file;
+      // const { status } = info.file;
 
       //   if (status !== "uploading") {
       //     console.log(info.file, info.fileList);

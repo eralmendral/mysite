@@ -3,7 +3,6 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import { Layout } from "antd";
 import "./dashboard.scss";
 import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer } from 'react-toastify';
 
 import DashboardHome from "./subpages/home/DashboardHome";
 import Sidebar from "./components/Sidebar.component";
@@ -18,7 +17,6 @@ class Dashboard extends React.Component {
     return (
       <Layout style={{ minHeight: "100vh" }}>
         <Sidebar className="bg-danger" />
-        <ToastContainer />
         <Layout className="site-layout">
           <Header className="site-layout-background" style={{ padding: 0 }} />
           <Content style={{ margin: "0 16px" }}>
