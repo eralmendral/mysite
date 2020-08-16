@@ -9,7 +9,7 @@ const ProjectsComponent = (props) =>{
 
     return  (
         <div className="project">
-            <h3 className="text-center mt-5 mb-3 sectionTitle">Projects</h3>
+            <h3 className="text-center mt-5 sectionTitle">Projects</h3>
             <Container  className="projects-container">
                 <Card className='project-card' style={{ width: '18rem' }} onClick={() => showProject()}>
                     <Card.Img className="img-bw" variant="top" src="https://static.dribbble.com/users/1720295/screenshots/13999365/media/759000ad4ca08d4d09c6511d77d1e7df.png" />

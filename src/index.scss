@@ -1,14 +1,5 @@
 @import "~react-image-gallery/styles/scss/image-gallery.scss";
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -17,20 +8,57 @@ code {
 * {
   margin: 0;
   padding: 0;
-}
-
-a:hover, a:active {
-  text-decoration: none !important;
-  background : none !important;
-}
-
-// Home
-
-@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
-
-* {
   font-family: "Raleway", sans-serif;
 }
+
+a:hover,
+a:active {
+  text-decoration: none !important;
+  background: none !important;
+}
+
+// Scrollbar design
+/* width */
+::-webkit-scrollbar {
+  width: 2px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 4px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(41, 5, 5);
+  border-radius: 1;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #cc1a1a;
+}
+
+textarea:hover,
+input:hover,
+textarea:active,
+input:active,
+textarea:focus,
+input:focus,
+button:focus,
+button:active,
+button:hover,
+label:focus,
+.btn:active,
+.btn.active {
+  outline: 0px !important;
+  -webkit-appearance: none;
+  box-shadow: none !important;
+}
+
+
+// Home
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
 
 .sectionTitle {
   font-size: 54px;
@@ -40,6 +68,11 @@ a:hover, a:active {
   -webkit-text-fill-color: transparent;
   text-align: center;
   z-index: 999;
+}
+
+.home {
+  overflow-x: hidden;
+  width: 100%
 }
 
 // Landing Page
@@ -103,27 +136,6 @@ a:hover, a:active {
   }
 }
 
-// Scrollbar design
-/* width */
-::-webkit-scrollbar {
-  width: 2px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  border-radius: 4px;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: rgb(41, 5, 5);
-  border-radius: 1;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #cc1a1a;
-}
 
 // Footer design
 .footer {
@@ -133,10 +145,6 @@ a:hover, a:active {
   background: #000;
   justify-content: center;
   align-items: center;
-
-  .footer-text {
-    color: #bb4907;
-  }
 }
 
 // Project
@@ -148,10 +156,11 @@ a:hover, a:active {
   .projects-container {
     display: flex;
     flex-wrap: wrap;
-
+    justify-content: start;
+    
     .project-card {
       margin: 20px;
-      width: 300px !important;
+      width: 300px;
       border: 0px;
       cursor: pointer;
 
@@ -246,7 +255,7 @@ a:hover, a:active {
     margin: 0 auto;
   }
 
-   :disabled {
+  :disabled {
     background: grey !important;
   }
 }
@@ -307,8 +316,12 @@ a:hover, a:active {
 }
 
 .theme-default-btn {
-  background: linear-gradient(45deg, rgb(194, 60, 7), rgb(195, 41, 93)) !important;
-  opacity: .8;
+  background: linear-gradient(
+    45deg,
+    rgb(194, 60, 7),
+    rgb(195, 41, 93)
+  ) !important;
+  opacity: 0.8;
   border: grey !important;
   height: 35px;
 
@@ -317,22 +330,41 @@ a:hover, a:active {
   }
 }
 
-textarea:hover,
-input:hover,
-textarea:active,
-input:active,
-textarea:focus,
-input:focus,
-button:focus,
-button:active,
-button:hover,
-label:focus,
-.btn:active,
-.btn.active {
-  outline: 0px !important;
-  -webkit-appearance: none;
-  box-shadow: none !important;
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 600px) {
+
+  .sectionTitle {
+    font-size: 24px;
+  }
+  
+  .landingUrls  {
+    position: absolute;
+    top: 20%;
+
+    li {
+      a {
+        font-size: 16px !important;
+        font-weight: bold !important;
+      }
+    }
+    
+  }
+
+  .projects-container {
+    justify-content: center !important;
+
+    .project-card {
+      margin: 0;
+      width: 250px !important;
+    }
+  }
+
+  .contact-info {
+    ul li {
+      display: flex !important;
+      justify-content: center;
+      line-height: 30px;
+      margin: 0 !important
+    }
+  }
 }
-
-
-

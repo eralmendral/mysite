@@ -84,7 +84,7 @@ class ContactComponent extends React.Component {
           </ul>
         </div>
 
-        <div className="contact-me mt-5">
+        <div className="contact-me mt-3">
           <Container>
             <Form id="emailForm" onSubmit={this.emailSent}>
               <Row>
@@ -120,15 +120,16 @@ class ContactComponent extends React.Component {
                     />
                   </Form.Group>
                 </Col>
-              </Row>
 
-              <Row>
-                <Col sm={12}>
-                  <Form.Group controlId="clientMessage">
+                <Col xs={12} sm={12}>
+                  <Form.Group
+                    className="mx-1 rounded-0"
+                    controlId="clientMessage"
+                  >
                     <Form.Control
                       className="contactfield"
                       as="textarea"
-                      rows="5"
+                      rows="10"
                       name="message"
                       value={this.state.message}
                       onChange={this.handleChange}
