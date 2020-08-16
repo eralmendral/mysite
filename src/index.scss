@@ -1,5 +1,6 @@
 @import "~react-image-gallery/styles/scss/image-gallery.scss";
 
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -79,6 +80,8 @@ label:focus,
 .landing {
   display: flex;
   height: 100vh;
+  min-height: 360px !important;
+  overflow: hidden;
   background: linear-gradient(45deg, rgb(2, 1, 1), rgb(31, 29, 29));
 }
 
@@ -156,7 +159,7 @@ label:focus,
   .projects-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: start;
+    justify-content: flex-start;
     
     .project-card {
       margin: 20px;

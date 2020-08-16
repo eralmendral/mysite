@@ -1,6 +1,6 @@
 import React from "react";
 import { withRouter, Link } from "react-router-dom";
-import { firebaseApp } from '../../../config/fbConfig';
+import { firebaseApp } from "../../../config/fbConfig";
 
 import { Layout, Menu } from "antd";
 import logo from "./ea.png";
@@ -11,6 +11,7 @@ import {
   SmileOutlined,
   GlobalOutlined,
   LogoutOutlined,
+  SettingOutlined
 } from "@ant-design/icons";
 
 const { Sider } = Layout;
@@ -30,22 +31,25 @@ function Sidebar({ history }) {
         <Menu
           className="bg-evil"
           theme="dark"
-          defaultSelectedKeys={["1"]}
+          defaultSelectedKeys={["2"]}
           mode="inline"
         >
-          <Menu.Item key="1" icon={<PieChartOutlined />}>
+          <Menu.Item key="1" icon={<GlobalOutlined />}>
+            <Link to="/">Site</Link>
+          </Menu.Item>
+          <Menu.Item key="2" icon={<PieChartOutlined />}>
             <Link to="/dashboard">Dashboard</Link>
           </Menu.Item>
-          <Menu.Item key="2" icon={<DesktopOutlined />}>
+          <Menu.Item key="3" icon={<DesktopOutlined />}>
             <Link to="/dashboard/projects">Projects</Link>
           </Menu.Item>
-          <Menu.Item key="3" icon={<SmileOutlined />}>
+          <Menu.Item key="4" icon={<SmileOutlined />}>
             <Link to="/dashboard/clients">Clients</Link>
           </Menu.Item>
-          <Menu.Item key="4" icon={<GlobalOutlined />}>
-            <Link to="/dashboard/website">Settings</Link>
+          <Menu.Item key="5" icon={<SettingOutlined />}>
+            <Link to="/dashboard/settings">Settings</Link>
           </Menu.Item>
-          <Menu.Item key="5" icon={<LogoutOutlined />} onClick={logout}>
+          <Menu.Item key="6" icon={<LogoutOutlined />} onClick={logout}>
             Logout
           </Menu.Item>
         </Menu>
