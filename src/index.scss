@@ -188,7 +188,7 @@ a:hover, a:active {
 
 .project-link {
   display: block;
-  border: 2px solid red;
+  border: 2px solid cc1a1a;
   margin: 0px 10px;
   padding: 5px;
   font-weight: bold;
@@ -304,6 +304,17 @@ a:hover, a:active {
 .theme-default {
   background: -webkit-linear-gradient(45deg, rgb(194, 60, 7), rgb(195, 41, 93));
   border: none;
+}
+
+.theme-default-btn {
+  background: linear-gradient(45deg, rgb(194, 60, 7), rgb(195, 41, 93)) !important;
+  opacity: .8;
+  border: grey !important;
+  height: 35px;
+
+  :disabled {
+    background: grey !important;
+  }
 }
 
 textarea:hover,

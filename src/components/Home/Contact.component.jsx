@@ -97,7 +97,7 @@ class ContactComponent extends React.Component {
                       value={this.state.from_name}
                       onChange={this.handleChange}
                       placeholder="Enter Name"
-                      autocomplete='off'
+                      autoComplete='off'
                       required
                     />
                   </Form.Group>
@@ -115,7 +115,7 @@ class ContactComponent extends React.Component {
                       value={this.state.from_email}
                       onChange={this.handleChange}
                       placeholder="Enter Email"
-                      autocomplete='off'
+                      autoComplete='off'
                       required
                     />
                   </Form.Group>

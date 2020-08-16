@@ -1,14 +1,17 @@
-import React, { useEffect} from 'react';
-import { BrowserRouter as Router , Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import HomeComponent from './components/Home/Home.component';
 import LoginComponent from './components/Login/Login.component';
 import ProjectComponent from './components/Home/Project/Project.component';
 import DashboardComponent from './components/Dashboard/Dashboard.component'
-import 'bootstrap/dist/css/bootstrap.min.css';
+import PrivateRoute from './hoc/PrivateRoute';
+import { AuthProvider } from './context/Auth.js';
 
 import { connect } from 'react-redux';
 import { fetchProjectsStart } from './redux/projects/project.actions';
 import { fetchClientsStart } from './redux/clients/client.actions';
+
 
 function App(props) {
   useEffect(() => {
@@ -16,12 +19,15 @@ function App(props) {
     props.fetchClients()
   }, [props])
   return (
-    <Router>
-      <Route exact path="/" component={HomeComponent} />
-      <Route  path="/dashboard" component={DashboardComponent} />
-       <Route exact path="/projects/:id" component={ProjectComponent} />
-      <Route path="/login" component={LoginComponent} /> 
-    </Router>
+    <AuthProvider>
+      <Router>
+        <Route exact path="/" component={HomeComponent} />
+        <PrivateRoute path="/dashboard" component={DashboardComponent} />
+        <Route exact path="/projects/:id" component={ProjectComponent} />
+        <Route path="/login" component={LoginComponent} />
+        <Redirect from="*" to='/' />
+      </Router>
+    </AuthProvider>
   );
 }
 

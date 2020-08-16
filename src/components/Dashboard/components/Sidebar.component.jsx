@@ -1,5 +1,7 @@
 import React from "react";
 import { withRouter, Link } from "react-router-dom";
+import { firebaseApp } from '../../../config/fbConfig';
+
 import { Layout, Menu } from "antd";
 import logo from "./ea.png";
 
@@ -12,9 +14,11 @@ import {
 } from "@ant-design/icons";
 
 const { Sider } = Layout;
-function Sidebar(props) {
+
+function Sidebar({ history }) {
   const logout = () => {
-    props.history.push("/");
+    firebaseApp.auth().signOut();
+    history.push("/");
   };
 
   return (

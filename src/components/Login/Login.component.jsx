@@ -1,16 +1,30 @@
-import React, { useState } from "react";
+import React, { useState , useCallback, useContext } from "react";
 import ParticleEffect from "../Home/Particles.component";
 import { Form, Button } from "react-bootstrap";
-import { Link, withRouter } from 'react-router-dom';
-const LoginComponent = (props) => {
+import { Link, withRouter , Redirect} from 'react-router-dom';
+import { AuthContext} from '../../context/Auth';
+import { firebaseApp } from '../../config/fbConfig';
+import { toast } from "react-toastify";
+
+const LoginComponent = ({ history }) => {
   const [email, setEmail] = useState("eralmendral@gmail.com");
   const [password, setPassword] = useState();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log("email + pass:", email, password);
-    props.history.push('/dashboard')
-  };
+  const handleLogin = useCallback(async event => {
+      event.preventDefault();
+      try {
+        await firebaseApp.auth().signInWithEmailAndPassword(email, password);
+        history.push('/dashboard')
+      }
+      catch(error) {
+        toast.error(error.message, { closeButton: false ,  hideProgressBar: true });
+      }
+  }, [ email, password, history ])
+
+  const { currentUser } = useContext(AuthContext);
+  if(currentUser) {
+    return <Redirect to="/dashboard" />;
+  }
 
   return (
     <div>
@@ -19,7 +33,7 @@ const LoginComponent = (props) => {
         <ParticleEffect />
         <div className="form-wrapper w-100 d-flex align-items-center justify-content-center text-white">
           <div className="form">
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleLogin}>
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email</Form.Label>
                 <Form.Control
@@ -28,6 +42,7 @@ const LoginComponent = (props) => {
                   className="rounded-0 border-0"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  autoComplete="off"
                 />
               </Form.Group>
 
@@ -39,14 +54,15 @@ const LoginComponent = (props) => {
                   className="rounded-0 border-0"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  autoComplete="off"
                 />
               </Form.Group>
 
               <Button
-                className="theme-default border-0 rounded-0 d-block btn-default"
+                className="rounded-0 d-block theme-default-btn "
                 type="submit"
               >
-                Submit
+                Login
               </Button>
             </Form>
           </div>
