@@ -1,6 +1,5 @@
 @import "~react-image-gallery/styles/scss/image-gallery.scss";
 
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -130,9 +129,9 @@ label:focus,
             45deg,
             rgb(194, 60, 7),
             rgb(195, 41, 93)
-          );
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
+          ) !important;
+          -webkit-background-clip: text !important;
+          -webkit-text-fill-color: transparent !important;
         }
       }
     }
@@ -223,9 +222,18 @@ label:focus,
       li {
         display: inline;
         margin: 0 30px;
-        font-weight: bold;
         color: #fff;
 
+        &:hover {
+          background: -webkit-linear-gradient(
+            45deg,
+            rgb(194, 60, 7),
+            rgb(195, 41, 93)
+          ) !important;
+          -webkit-background-clip: text !important;
+          -webkit-text-fill-color: transparent !important;
+        }
+        
         a {
           color: #fff;
         }
