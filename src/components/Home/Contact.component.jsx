@@ -127,9 +127,8 @@ class ContactComponent extends React.Component {
                     controlId="clientMessage"
                   >
                     <Form.Control
-                      className="contactfield"
+                      className="contactfield contact-message"
                       as="textarea"
-                      rows="10"
                       name="message"
                       value={this.state.message}
                       onChange={this.handleChange}

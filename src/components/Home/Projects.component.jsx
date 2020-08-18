@@ -18,10 +18,12 @@ const ProjectsComponent = (props) =>{
                         <Card.Text>
                         A Web and Desktop Software platform that enable church activities to be digitalized.
                         </Card.Text>
-                        <Card.Link href="https://github.com/eralmendral/churchapp" target="_blank" onClick={(e) => e.stopPropagation()}><i className="fa fa-github fa-2x project-card-link" aria-hidden="true"></i></Card.Link>
-                        <Card.Link href="#" onClick={(e) => e.stopPropagation() }><i className="fa fa-globe fa-2x project-card-link" aria-hidden="true"></i></Card.Link>
+                        <Card.Link href="https://github.com/eralmendral/churchapp" target="_blank" onClick={(e) => e.stopPropagation()}><i className="fab fa-github fa-2x project-card-link" title="github repository" aria-hidden="true"></i></Card.Link>
+                        <Card.Link href="#" onClick={(e) => e.stopPropagation() }><i className="fas fa-link fa-2x project-card-link" title="url" aria-hidden="true"></i></Card.Link>
                     </Card.Body>
                 </Card>
+
+                
             </Container>
         </div>
     )

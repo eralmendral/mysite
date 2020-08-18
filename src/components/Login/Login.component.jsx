@@ -29,7 +29,7 @@ const LoginComponent = ({ history }) => {
   return (
     <div>
       <div className="landing">
-      <Link to="/"> <i className="fa fa-arrow-left fa-2x text-white homelink" aria-hidden="true"></i></Link>
+      <Link to="/"> <b className="text-white homelink" aria-hidden="true">home</b></Link>
         <ParticleEffect />
         <div className="form-wrapper w-100 d-flex align-items-center justify-content-center text-white">
           <div className="form">
