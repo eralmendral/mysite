@@ -17,7 +17,10 @@ const LoginComponent = ({ history }) => {
         history.push('/dashboard')
       }
       catch(error) {
-        toast.error(error.message, { closeButton: false ,  hideProgressBar: true });
+        let errorMessage;
+        if(error.code === 'auth/wrong-password') errorMessage = 'Invalid Password.';
+        if(error.code === 'auth/user-not-found') errorMessage = 'User not found.';
+        toast.error(errorMessage, { closeButton: false ,  hideProgressBar: true });
       }
   }, [ email, password, history ])
 
@@ -28,7 +31,7 @@ const LoginComponent = ({ history }) => {
 
   return (
     <div>
-      <div className="landing">
+      <div className="landing login-page">
       <Link to="/"> <b className="text-white homelink" aria-hidden="true">home</b></Link>
         <ParticleEffect />
         <div className="form-wrapper w-100 d-flex align-items-center justify-content-center text-white">
@@ -61,6 +64,7 @@ const LoginComponent = ({ history }) => {
               <Button
                 className="rounded-0 d-block theme-default-btn "
                 type="submit"
+                disabled={!password || !email ? true : false}
               >
                 Login
               </Button>

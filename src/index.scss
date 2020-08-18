@@ -1,5 +1,14 @@
 @import "~react-image-gallery/styles/scss/image-gallery.scss";
 
+// variables
+$base-dark: rgb(17, 6, 10);
+$theme-gradient: linear-gradient(
+  45deg,
+  rgb(194, 60, 7),
+  rgb(195, 41, 93)
+) !important;
+
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -19,6 +28,10 @@ a:hover,
 a:active {
   text-decoration: none !important;
   background: none !important;
+}
+
+button:disabled {
+  background: grey !important;
 }
 
 // Scrollbar design
@@ -64,7 +77,7 @@ label:focus,
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
 
 .sectionTitle {
-  font-size: 54px;
+  font-size: 36px;
   font-weight: bolder;
   background: -webkit-linear-gradient(45deg, rgb(194, 60, 7), rgb(195, 41, 93));
   -webkit-background-clip: text;
@@ -129,11 +142,7 @@ label:focus,
         cursor: pointer;
 
         &:hover {
-          background: -webkit-linear-gradient(
-            45deg,
-            rgb(194, 60, 7),
-            rgb(195, 41, 93)
-          ) !important;
+          background: $theme-gradient;
           -webkit-background-clip: text !important;
           -webkit-text-fill-color: transparent !important;
         }
@@ -166,7 +175,7 @@ label:focus,
 
     .project-card {
       margin: 20px;
-      width: 315px !important;
+      width: 315px;
       border: 0px;
       cursor: pointer;
 
@@ -181,13 +190,6 @@ label:focus,
       }
     }
   }
-}
-
-.project-images-container {
-  position: relative !important;
-  width: 520px;
-  display: block;
-  margin: 20px auto;
 }
 
 .prevprojectlink {
@@ -208,11 +210,16 @@ label:focus,
 
 .project-link {
   display: block;
-  border: 2px solid cc1a1a;
+  border: 1px solid rgb(245, 92, 92);;
   margin: 0px 10px;
-  padding: 5px;
-  font-weight: bold;
+  padding: 10px;
+  width: 100px;
   cursor: pointer;
+  text-align: center;
+
+  span {
+    font-weight: normal;
+  }
 }
 
 // Project page
@@ -222,30 +229,46 @@ label:focus,
   overflow-x: hidden;
   background: rgb(17, 6, 10);
 
-h1 {
-  background: -webkit-linear-gradient(
-    45deg,
-    rgb(236, 119, 73),
-    rgb(219, 77, 124)
-  ) !important;
-  background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  font-weight: bold;
-}
-  
-p,
-i,
-i,
-span {
-  color: rgb(177, 177, 177);
-}
+  h1 {
+    background: $theme-gradient;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    font-weight: bold;
+  }
 
-p {
-  font-size: 18px;
-  line-height: 32px;
-  text-justify: center;
-}
+  p,
+  i,
+  i,
+  span {
+    color: rgb(177, 177, 177);
+  }
 
+  p {
+    font-size: 16px;
+    line-height: 32px;
+    text-justify: center;
+  }
+
+  .project-images-container {
+    position: relative !important;
+    width: 100%;
+    display: block;
+    margin: 20px auto;
+    z-index: 999;
+
+    .project-title {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 15%;
+      background: $base-dark;
+      opacity: 0.95;
+      bottom: 0;
+      padding-left: 10%;
+      z-index: 1;
+    }
+  }
 }
 
 /*  Contact */
@@ -304,12 +327,13 @@ p {
       rgb(195, 41, 93)
     );
     border: none;
-    padding: 14px;
     display: block;
     width: 50%;
     max-width: 250px;
     display: block;
+
     margin: 10px auto;
+    padding: 14px;
     cursor: pointer;
   }
 
@@ -379,7 +403,7 @@ p {
     rgb(194, 60, 7),
     rgb(195, 41, 93)
   ) !important;
-  opacity: 0.8;
+  opacity: 0.9;
   border: grey !important;
   height: 35px;
 
@@ -391,7 +415,7 @@ p {
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (max-width: 600px) {
   .sectionTitle {
-    font-size: 24px;
+    font-size: 26px;
   }
 
   .landingUrls {
@@ -415,21 +439,25 @@ p {
     }
   }
 
-  .contact-message {
-    height: 80px !important;
-  }
+  .contact {
+    .contact-message {
+      height: 80px !important;
+    }
 
-  .contactSubmit {
-    width: 200px !important;
-    height: 50px !important;
-  }
+    .contactSubmit {
+      width: 200px !important;
+      height: 40px !important;
+      margin: 10px auto;
+      padding: 0px !important;
+    }
 
-  .contact-info {
-    ul li {
-      display: flex !important;
-      justify-content: center;
-      line-height: 30px;
-      margin: 0 !important;
+    .contact-info {
+      ul li {
+        display: flex !important;
+        justify-content: center;
+        line-height: 30px;
+        margin: 0 !important;
+      }
     }
   }
 }

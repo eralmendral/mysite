@@ -11,12 +11,12 @@ function DashboardHome() {
             </Card>
           </div>
           <div className="col-sm-4">
-          <Card className="text-center" title="Pending Project" bordered={true} style={{ width: '100%'}}>
+          <Card className="text-center" title="Current Project" bordered={true} style={{ width: '100%'}}>
              <h1>32</h1>
             </Card>
           </div>
           <div className="col-sm-4">
-          <Card className="text-center" title="Pending Project" bordered={true} style={{ width: '100%'}}>
+          <Card className="text-center" title="Done Project" bordered={true} style={{ width: '100%'}}>
              <h1>32</h1>
             </Card>
           </div>
