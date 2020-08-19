@@ -3,7 +3,7 @@ import { withRouter, Link } from "react-router-dom";
 import { firebaseApp } from "../../../config/fbConfig";
 
 import { Layout, Menu } from "antd";
-import logo from "./logo_sm.jpg";
+import logo from "./ea.png";
 
 import {
   DesktopOutlined,
@@ -25,7 +25,7 @@ function Sidebar({ history }) {
   return (
     <Sider className="bg-evil">
       <div className="logo" style={{ height: "auto" }}>
-        <img src={logo} className="img-fluid" alt="logo" />
+        <img src={logo} className="img-fluid" alt="logo" style={{ filter: 'saturate(.5)' }} />
       </div>
       <div className="sidebar">
         <Menu

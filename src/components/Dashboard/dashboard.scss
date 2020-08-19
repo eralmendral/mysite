@@ -1,31 +1,107 @@
-@import '~antd/dist/antd.css';
+@import "~antd/dist/antd.css";
+
+// Variables
+$base-dark: #211f20;
+$base-dark-2: rgb(17, 17, 22);
+
+$theme-gradient: linear-gradient(
+  45deg,
+  rgb(194, 60, 7),
+  rgb(195, 41, 93)
+) !important;
+
+// mixins
+@mixin color-theme-gradient {
+  background: -webkit-linear-gradient(45deg, rgb(194, 60, 7), rgb(195, 41, 93));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+}
 
 #components-layout-demo-custom-trigger .trigger {
-    font-size: 18px;
-    line-height: 64px;
-    padding: 0 24px;
-    cursor: pointer;
-    transition: color 0.3s;
-  }
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+#components-layout-demo-custom-trigger .trigger:hover {
+  color: #740917;
+}
+
+#components-layout-demo-custom-trigger .logo {
+  height: 32px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px;
+}
+
+.site-layout .site-layout-background {
+  background: #fff;
+}
+
+.logo {
+  background: rgb(32, 30, 30);
+  height: 200px;
+}
+
+.card-default {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 250px;
+  border-radius: 10px;
   
-  #components-layout-demo-custom-trigger .trigger:hover {
-    color: #740917;
-  }
-  
-  #components-layout-demo-custom-trigger .logo {
-    height: 32px;
-    background: rgba(255, 255, 255, 0.2);
-    margin: 16px;
-  }
-  
-  .site-layout .site-layout-background {
-    background: #fff;
+  h1 {
+    font-weight: bolder;
+    font-size: 54px;
+    font-family: "Alata" !important;
+    color: #fff;
   }
 
-  .logo {
-      background: rgb(32, 30, 30);
-      height: 200px;
+  h3 {
+    font-weight: bold;
+    font-family: "Raleway" !important;
+    color: #fff;
   }
+}
 
-  
-  
+.card-obelisk {
+  background: linear-gradient(-45deg, #040b1a, #032d61);
+}
+
+.card-slifer {
+  background: linear-gradient(-45deg, #35080a, #570315);
+}
+
+.card-apollo {
+  background: linear-gradient(-45deg, #251102, #551d02);
+}
+
+.card-projects {
+  background: linear-gradient(-45deg, #0c0c20, #060314);
+}
+
+.card-clients {
+  background: linear-gradient(-45deg, #18110c, #0a0909);
+}
+
+// override ant design styles
+
+.ant-layout .site-layout {
+  background: $base-dark-2 !important;
+}
+
+.site-layout-background {
+  background: $base-dark-2 !important;
+}
+
+.ant-layout-sider-children,
+.ant-menu {
+  background: $base-dark !important;
+}
+
+.ant-menu-item-selected {
+  background: grey !important;
+}
