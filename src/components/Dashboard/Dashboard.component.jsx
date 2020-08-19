@@ -12,7 +12,6 @@ import ClientAddEdit from './subpages/clients/ClientAddEdit';
 import ProjectList from "./subpages/projects/ProjectList";
 import ProjectAddEdit from "./subpages/projects/ProjectAddEdit";
 
-import  SettingsComponent from './subpages/settings/Settings';
 const { Header, Content } = Layout;
 class Dashboard extends React.Component {
   render() {
@@ -38,7 +37,6 @@ class Dashboard extends React.Component {
                 <Route path={`${this.props.match.url}/clients/add`} component={ClientAddEdit} />
                 <Route path={`${this.props.match.url}/clients/edit/:clientId`} component={ClientAddEdit} />
 
-                <Route path={`${this.props.match.url}/settings`} component={SettingsComponent} />
                 <Redirect from="*" to='/' />
               </Switch>
             </div>

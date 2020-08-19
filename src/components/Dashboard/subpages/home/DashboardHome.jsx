@@ -5,7 +5,7 @@ function DashboardHome() {
     <div className="container-fluid">
       <div className="row">
         <div className="col-sm-12">
-          <p className="text-white">Projects</p>
+          <b>Projects</b>
         </div>
         <div className="col-sm-4">
           <Card
@@ -38,7 +38,7 @@ function DashboardHome() {
 
       <div className="row mt-4">
         <div className="col-sm-12">
-          <p className="text-white">All</p>
+        <b>All</b>
         </div>
         <div className="col-sm-6 d-flex justify-content-center">
           <Card

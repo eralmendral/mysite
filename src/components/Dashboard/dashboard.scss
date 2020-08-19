@@ -2,7 +2,7 @@
 
 // Variables
 $base-dark: #211f20;
-$base-dark-2: rgb(17, 17, 22);
+$base-dark-2: rgb(233, 233, 240);
 
 $theme-gradient: linear-gradient(
   45deg,
@@ -68,23 +68,23 @@ $theme-gradient: linear-gradient(
 }
 
 .card-obelisk {
-  background: linear-gradient(-45deg, #040b1a, #032d61);
+  background: linear-gradient(-45deg, #3b507c, #032d61);
 }
 
 .card-slifer {
-  background: linear-gradient(-45deg, #35080a, #570315);
+  background: linear-gradient(-45deg, #924347, #8f0724);
 }
 
 .card-apollo {
-  background: linear-gradient(-45deg, #251102, #551d02);
+  background: linear-gradient(-45deg, #856044, #852f04);
 }
 
 .card-projects {
-  background: linear-gradient(-45deg, #0c0c20, #060314);
+  background: linear-gradient(-45deg, #291329, #050116);
 }
 
 .card-clients {
-  background: linear-gradient(-45deg, #18110c, #0a0909);
+  background: linear-gradient(-45deg, #131124, #1a0202);
 }
 
 // override ant design styles

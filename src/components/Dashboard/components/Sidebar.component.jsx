@@ -46,9 +46,6 @@ function Sidebar({ history }) {
           <Menu.Item key="4" icon={<SmileOutlined />}>
             <Link to="/dashboard/clients">Clients</Link>
           </Menu.Item>
-          <Menu.Item key="5" icon={<SettingOutlined />}>
-            <Link to="/dashboard/settings">Settings</Link>
-          </Menu.Item>
           <Menu.Item key="6" icon={<LogoutOutlined />} onClick={logout}>
             Logout
           </Menu.Item>
