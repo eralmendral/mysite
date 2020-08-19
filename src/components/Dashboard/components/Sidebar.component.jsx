@@ -3,7 +3,7 @@ import { withRouter, Link } from "react-router-dom";
 import { firebaseApp } from "../../../config/fbConfig";
 
 import { Layout, Menu } from "antd";
-import logo from "./ea.png";
+import logo from "./logo_sm.jpg";
 
 import {
   DesktopOutlined,
