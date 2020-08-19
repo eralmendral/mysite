@@ -2,7 +2,6 @@
 
 .firebaserc
 firebase.json
-/config
 src/config
 
 # dependencies
