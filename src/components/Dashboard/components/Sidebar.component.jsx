@@ -8,9 +8,14 @@ import logo from "./ea.png";
 import {
   DesktopOutlined,
   PieChartOutlined,
-  SmileOutlined,
+  ContactsOutlined,
   GlobalOutlined,
-  LogoutOutlined
+  MailOutlined,
+  CarryOutOutlined,
+  LogoutOutlined,
+  GithubOutlined,
+  RadarChartOutlined,
+  FileProtectOutlined
 } from "@ant-design/icons";
 
 const { Sider } = Layout;
@@ -24,7 +29,12 @@ function Sidebar({ history }) {
   return (
     <Sider className="bg-evil">
       <div className="logo" style={{ height: "auto" }}>
-        <img src={logo} className="img-fluid" alt="logo" style={{ filter: 'saturate(.5)' }} />
+        <img
+          src={logo}
+          className="img-fluid"
+          alt="logo"
+          style={{ filter: "saturate(.5)" }}
+        />
       </div>
       <div className="sidebar">
         <Menu
@@ -42,10 +52,25 @@ function Sidebar({ history }) {
           <Menu.Item key="3" icon={<DesktopOutlined />}>
             <Link to="/dashboard/projects">Projects</Link>
           </Menu.Item>
-          <Menu.Item key="4" icon={<SmileOutlined />}>
+          <Menu.Item key="4" icon={<ContactsOutlined />}>
             <Link to="/dashboard/clients">Clients</Link>
           </Menu.Item>
-          <Menu.Item key="6" icon={<LogoutOutlined />} onClick={logout}>
+          <Menu.Item key="5" icon={<MailOutlined />}>
+            <Link to="/dashboard/clients">Messages</Link>
+          </Menu.Item>
+          <Menu.Item key="6" icon={<CarryOutOutlined />}>
+            <Link to="/dashboard/clients">Work XP</Link>
+          </Menu.Item>
+          <Menu.Item key="7" icon={<GithubOutlined />}>
+            <Link to="/dashboard/clients">Contributions</Link>
+          </Menu.Item>
+          <Menu.Item key="8" icon={<RadarChartOutlined />}>
+            <Link to="/dashboard/clients">Skills</Link>
+          </Menu.Item>
+          <Menu.Item key="9" icon={<FileProtectOutlined />}>
+            <Link to="/dashboard/clients">Certifications</Link>
+          </Menu.Item>
+          <Menu.Item key="10" icon={<LogoutOutlined />} onClick={logout}>
             Logout
           </Menu.Item>
         </Menu>
