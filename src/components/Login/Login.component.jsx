@@ -26,7 +26,7 @@ const LoginComponent = ({ history }) => {
 
   const { currentUser } = useContext(AuthContext);
   if(currentUser) {
-    return <Redirect to="/dashboard" />;
+    return <Redirect to="/dashboard/projects/add" />;
   }
 
   return (

@@ -1,8 +1,6 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
-import FooterComponent from "../Footer.component";
 import { Gallery, GalleryImage } from "react-gesture-gallery";
-import ParticleEffect from "../Particles.component";
 
 const images = [
   {

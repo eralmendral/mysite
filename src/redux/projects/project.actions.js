@@ -14,6 +14,10 @@ export const fetchProjectsFailure = (error) => ({
     payload: error
 });
 
+export const addProject = (project) => ({
+    type: ProjectActionTypes.ADD_PROJECT,
+    payload: project
+})
 
 export const deleteProject = (project) => ({
     type: ProjectActionTypes.DELETE_PROJECT,

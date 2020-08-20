@@ -10,8 +10,7 @@ import {
   PieChartOutlined,
   SmileOutlined,
   GlobalOutlined,
-  LogoutOutlined,
-  SettingOutlined
+  LogoutOutlined
 } from "@ant-design/icons";
 
 const { Sider } = Layout;
