@@ -6,13 +6,16 @@ import { addClient, updateClient } from "../../../../redux/clients/client.action
 import { connect } from "react-redux";
 import { toast } from "react-toastify";
 import { selectClient } from "../../../../redux/clients/client.selectors";
+const ADD = 'Add';
+const EDIT = 'Edit';
+const isAdd = 'add';
 
 function ClientAddEdit(props) {
   let urlParts = props.match.path.split("/");
-  let mode = urlParts.pop() === "add" ? "Add" : "Edit";
+  let mode = urlParts.pop() === isAdd ? ADD : EDIT;
 
   const [date, setDate] = useState(mode === 'Edit' ? props.client ? props.client.date.toDate() : new Date() : null);
-  if(mode === 'Edit' && !props.client) {
+  if(mode === EDIT && !props.client) {
     props.history.push('/dashboard/clients')
   } 
   
@@ -24,8 +27,8 @@ function ClientAddEdit(props) {
       date: date,
     };
 
-    // dispatch action here
-    if(mode === 'Add') {
+    // Dispatch action here
+    if(mode === ADD) {
       props.addClient(data);
       toast.success("Client Added!", { closeButton: false ,  hideProgressBar: true });
       form.resetFields();
@@ -34,7 +37,6 @@ function ClientAddEdit(props) {
 
     if(mode === 'Edit') {
       data.id = props.client.id;
-      console.log(data);
       props.updateClient(data);
       toast.success("Client Updated!", { closeButton: false ,  hideProgressBar: true });
     }

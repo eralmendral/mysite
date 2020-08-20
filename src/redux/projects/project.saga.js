@@ -30,8 +30,6 @@ export function* fetchProjectsStart() {
 
 export function* deleteProjectAsync(action) {
     try {
-        console.log('debug delete:', action)
-        // firebase remove document
         yield call(rsf.firestore.deleteDocument, `projects/${action.payload.id}`);
         yield call(fetchProjectsAsync)
     }
@@ -50,9 +48,7 @@ export function* deleteProject() {
 
 export function* addProjectAsync(action) {
     try {
-        // firebase remove document
         yield call(rsf.firestore.addDocument, 'projects', action.payload);
-        console.log('add project')
         yield call(fetchProjectsAsync)
     } catch (error) {
         console.log('Error adding project.', error)
@@ -66,6 +62,22 @@ export function* addProject() {
     )
 }
 
+export function* updateProjectAsync(action) {
+    try {
+        // yield call(rsf.firestore.addDocument, 'projects', action.payload);
+        yield call(fetchProjectsAsync)
+    } catch (error) {
+        console.log('Error updating project.', error)
+    }
+}
+
+export function* updateProject() {
+    yield takeLatest(
+        ProjectActionTypes.UPDATE_PROJECT,
+        addProjectAsync
+    )
+}
+
 export function* projectSaga() {
-    yield all([call(fetchProjectsStart), call(deleteProject), call(addProject)])
+    yield all([call(fetchProjectsStart), call(deleteProject), call(addProject), call(updateProject)])
 }

@@ -19,6 +19,11 @@ export const addProject = (project) => ({
     payload: project
 })
 
+export const updateProject = (project) => ({
+    type: ProjectActionTypes.UPDATE_PROJECT,
+    payload: project
+})
+
 export const deleteProject = (project) => ({
     type: ProjectActionTypes.DELETE_PROJECT,
     payload: project

@@ -6,8 +6,6 @@ import { connect } from "react-redux";
 import { selectClientList } from "../../../../redux/clients/client.selectors";
 import {
   UserAddOutlined,
-  EditOutlined,
-  DeleteOutlined,
   ExclamationCircleOutlined
 } from "@ant-design/icons";
 
@@ -76,8 +74,8 @@ function ClientList({ match, history, clients, deleteClient }) {
       key: "action",
       render: (text, record) => (
         <Space size="middle">
-          <EditOutlined onClick={ () => {  history.push(match.path + '/edit/' + record.id) }}/>
-          <DeleteOutlined  onClick={() => { showDeleteConfirm(record)}}/>
+          <Button onClick={ () => {  history.push(match.path + '/edit/' + record.id) }}>Edit</Button>
+          <Button type='danger' onClick={() => { showDeleteConfirm(record)}}>Delete</Button>
         </Space>
       ),
     },

@@ -358,7 +358,9 @@ label:focus,
   color: black;
 
   &:hover {
-    color: #fff;
+    background: $theme-gradient;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
   }
 }
 

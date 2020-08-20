@@ -7,6 +7,7 @@ import {
   GithubOutlined,
   ChromeOutlined,
   UploadOutlined,
+  CloseCircleOutlined,
 } from "@ant-design/icons";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
@@ -14,17 +15,46 @@ import { toast } from "react-toastify";
 import { storage } from "../../../../config/fbConfig";
 import { v4 as uuidv4 } from "uuid";
 
-import { addProject } from "../../../../redux/projects/project.actions";
+import {
+  addProject,
+  updateProject,
+} from "../../../../redux/projects/project.actions";
+import { selectProject } from "../../../../redux/projects/project.selectors";
 
-function ProjectAddEdit({ addProject }) {
-  const id = uuidv4(); // projectid
+const ADD = "Add";
+const EDIT = "Edit";
+const isAdd = "add";
+
+function ProjectAddEdit({
+  project,
+  match,
+  history,
+  addProject,
+  updateProject,
+}) {
+  let urlParts = match.path.split("/");
+  let mode = urlParts.pop() === isAdd ? ADD : EDIT;
+
+  if (mode === EDIT && !project) {
+    history.push("/dashboard/projects");
+  }
+
+  const id = uuidv4(); // projectId
   const [form] = Form.useForm();
   const { Option } = Select;
 
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(
+    mode === EDIT ? (project ? project.date.toDate() : new Date()) : new Date()
+  );
+
   const [status, setStatus] = useState("current");
-  const [thumbnailUrl, setThumbnailUrl] = useState();
-  const [imagesUrls, setImagesUrls] = useState([]);
+  const [thumbnailUrl, setThumbnailUrl] = useState(
+    mode === EDIT ? project.thumbnail : null
+  );
+  const [imagesUrls, setImagesUrls] = useState(
+    mode === EDIT ? project?.images : []
+  );
+
   const onOkDate = (value) => {
     setDate(value ? value.toDate() : null);
   };
@@ -41,10 +71,18 @@ function ProjectAddEdit({ addProject }) {
 
   const uploadImage = (event, index, path) => {
     const image = event.target.files[index];
+
     if (image) {
-      const uploadTask = storage
-        .ref(`${id}/${path}/${index}${id}/${image.name}`)
-        .put(image);
+      const folderPath =
+        mode === EDIT
+          ? `${id}/${path}/${index}${id}/${image.name}`
+          : `${project.id}/${path}/${index}${project.id}/${image.name}`;
+      const imagePath =
+        mode === EDIT
+          ? `/${path}/${index}${id}/${image.name}`
+          : `/${path}/${index}${project.id}/${image.name}`;
+      const storageRef = mode === "Edit" ? id : project.id;
+      const uploadTask = storage.ref(folderPath).put(image);
 
       uploadTask.on(
         "state_changed",
@@ -54,8 +92,8 @@ function ProjectAddEdit({ addProject }) {
         },
         () => {
           storage
-            .ref(id)
-            .child(`/${path}/${index}${id}/${image.name}`)
+            .ref(storageRef)
+            .child(imagePath)
             .getDownloadURL()
             .then((url) => {
               if (path === "thumbnail") {
@@ -102,22 +140,56 @@ function ProjectAddEdit({ addProject }) {
       data["thumbnail"] = thumbnailUrl;
     }
 
-    addProject(data);
+    if (imagesUrls.length > 0) {
+      data["images"] = [];
+      imagesUrls.forEach((image) => {
+        data["images"].push(image);
+      });
+    }
 
-    toast.success("Project Added!", {
+    let successMessage = "";
+    if (mode === "Add") {
+      addProject(data);
+      successMessage = "Project Added!";
+    }
+
+    if (mode === "Edit") {
+      updateProject(data);
+      successMessage = "Project Updated!";
+    }
+
+    toast.success(successMessage, {
       closeButton: true,
       hideProgressBar: true,
     });
 
+    setThumbnailUrl("");
+    setImagesUrls([]);
     form.resetFields();
+    history.push("/dashboard/projects");
   };
 
   return (
     <div>
-      <h3> Add Project</h3>
+      <h3> {mode} Project</h3>
       <div className="row mt-3">
         <div className="col-sm-6">
-          <Form form={form} onFinish={onSubmit}>
+          <Form
+            form={form}
+            initialValues={
+              project
+                ? {
+                    title: mode === "Edit" ? project?.title : "",
+                    client: mode === "Edit" ? project?.client : "",
+                    description: mode === "Edit" ? project?.description : "",
+                    github: mode === "Edit" ? project?.github : "",
+                    demo: mode === "Edit" ? project?.demo : "",
+                    prod: mode === "Edit" ? project?.prod : "",
+                  }
+                : null
+            }
+            onFinish={onSubmit}
+          >
             <Form.Item
               name="title"
               rules={[
@@ -152,7 +224,7 @@ function ProjectAddEdit({ addProject }) {
                 },
               ]}
             >
-              <Input.TextArea />
+              <Input.TextArea className="input-description" />
             </Form.Item>
 
             <Form.Item name="github">
@@ -179,7 +251,9 @@ function ProjectAddEdit({ addProject }) {
             <b>Thumbnail</b>
             <Form.Item>
               <Button type="dashed" danger icon={<UploadOutlined />}>
-                <label htmlFor="thumbnail">Upload Thumbnail</label>
+                <label htmlFor="thumbnail">
+                  Upload {mode === "Edit" ? "New" : ""} Thumbnail
+                </label>
               </Button>
 
               <input
@@ -219,7 +293,13 @@ function ProjectAddEdit({ addProject }) {
 
             <Form.Item>
               <Select
-                defaultValue="current"
+                defaultValue={
+                  mode === "Edit"
+                    ? project.status
+                      ? project?.status
+                      : "current"
+                    : "current"
+                }
                 style={{ width: 150 }}
                 onChange={handleStatusChange}
               >
@@ -253,9 +333,14 @@ function ProjectAddEdit({ addProject }) {
 
             <div className="col-sm-12 mt-3">
               <div className="project-images-wrapper d-flex">
-                {imagesUrls.length > 0
+                {imagesUrls
                   ? imagesUrls.map((imageUrl, i) => (
                       <div key={i} className="project-image mx-1">
+                        {mode === EDIT ? (
+                          <CloseCircleOutlined className="cursor-pointer text-danger" />
+                        ) : (
+                          ""
+                        )}
                         <img
                           src={imageUrl}
                           alt="project images"
@@ -273,10 +358,13 @@ function ProjectAddEdit({ addProject }) {
   );
 }
 
-const mapStateToProps = (state, ownProps) => ({});
+const mapStateToProps = (state, ownProps) => ({
+  project: selectProject(ownProps.match.params.projectId)(state),
+});
 
 const mapDispatchToProps = (dispatch) => ({
   addProject: (project) => dispatch(addProject(project)),
+  updateProject: (project) => dispatch(updateProject(project)),
 });
 
 export default connect(

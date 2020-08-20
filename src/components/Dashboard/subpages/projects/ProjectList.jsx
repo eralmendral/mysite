@@ -3,15 +3,11 @@ import { withRouter, Link } from "react-router-dom";
 import { Table, Button, Space, Modal } from "antd";
 import { connect } from "react-redux";
 import {
-  EyeOutlined,
-  EditOutlined,
   DesktopOutlined,
   ExclamationCircleOutlined
 } from "@ant-design/icons";
 
 import { toast } from "react-toastify";
-
-
 
 import { selectProjectList } from "../../../../redux/projects/project.selectors";
 import { deleteProject }  from "../../../../redux/projects/project.actions";
@@ -19,10 +15,8 @@ import moment from 'moment';
 
 const { confirm } = Modal;
 
-function ProjectList({ projects, match, deleteProject }) {
-
+function ProjectList({ projects, match, deleteProject, history }) {
   function showDeleteConfirm(record) {
-    console.log('value:',record); 
     confirm({
       title: 'Are you sure delete this project?',
       icon: <ExclamationCircleOutlined />,
@@ -64,10 +58,15 @@ function ProjectList({ projects, match, deleteProject }) {
       key: "client",
     },
     {
+      title: "Status",
+      dataIndex: "status",
+      key: "status",
+    },
+    {
       title: "Thumbnail",
       dataIndex: "thumbnail",
       key: "thumbnail",
-      render: (text) => <img src={text} className="img-fluid" alt='thumbnail' style={{ maxHeight: '100px', filter: 'grayscale(90%)'}} />,
+      render: (text) => <img src={text} className="img-fluid" alt='thumbnail' style={{ height: '120px', width: '150px', filter: 'grayscale(90%)'}} />,
     },
     {
       title: "Date",
@@ -77,19 +76,16 @@ function ProjectList({ projects, match, deleteProject }) {
     {
       title: "Action",
       key: "action",
-      render: (text, record) => (
-        <Space size="middle">
-          <EyeOutlined />
-          <EditOutlined />
-          {/* <DeleteOutlined  /> */}
-
+      render: (text, record) => {
+        return (
+          <Space size="middle">
+          <Button type='default' onClick={() => { history.push(`/dashboard/projects/edit/${record.id}`) } }>Edit</Button>
           <Button type='danger' onClick={() => showDeleteConfirm(record)}>Delete</Button>
         </Space>
-      ),
+        )
+      },
     },
   ];
-
-
 
   return (
     <div>
@@ -118,7 +114,7 @@ function ProjectList({ projects, match, deleteProject }) {
   );
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, ownProps) => ({
   projects: selectProjectList(state),
 });
 

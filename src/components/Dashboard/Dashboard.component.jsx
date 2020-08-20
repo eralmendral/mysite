@@ -30,8 +30,7 @@ class Dashboard extends React.Component {
                 <Route exact path={`${this.props.match.url}`} component={DashboardHome} />
                 <Route exact path={`${this.props.match.url}/projects`} component={ProjectList} />
                 <Route path={`${this.props.match.url}/projects/add`} component={ProjectAddEdit} />
-                <Route path={`${this.props.match.url}/projects/edit/:projectId`} component={ProjectList} />
-                <Route path={`${this.props.match.url}/projects/:projectId`} component={this.projects} />
+                <Route path={`${this.props.match.url}/projects/edit/:projectId`} component={ProjectAddEdit} />
 
                 <Route exact path={`${this.props.match.url}/clients`} component={ClientList} />
                 <Route path={`${this.props.match.url}/clients/add`} component={ClientAddEdit} />

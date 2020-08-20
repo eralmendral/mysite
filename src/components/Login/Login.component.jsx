@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 const LoginComponent = ({ history }) => {
   const [email, setEmail] = useState("eralmendral@gmail.com");
   const [password, setPassword] = useState();
-  console.log('env:', process.env.FIREBASE_API_KEY);
+
   const handleLogin = useCallback(async event => {
       event.preventDefault();
       try {
