@@ -1,25 +1,14 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import { Gallery, GalleryImage } from "react-gesture-gallery";
-
-const images = [
-  {
-    src: "https://picsum.photos/id/1018/1000/600/",
-    thumbnail: "https://picsum.photos/id/1018/250/150/",
-  },
-  {
-    src: "https://picsum.photos/id/1015/1000/600/",
-    thumbnail: "https://picsum.photos/id/1015/250/150/",
-  },
-  {
-    src: "https://picsum.photos/id/1019/1000/600/",
-    thumbnail: "https://picsum.photos/id/1019/250/150/",
-  },
-];
-
-const ProjectComponent = (props) => {
+import { selectProject } from '../../../redux/projects/project.selectors'
+import { connect } from "react-redux";
+const ProjectComponent = ({ project, history }) => {
+  if(!project){
+    history.push('/')
+  }
   const [index, setIndex] = React.useState(0);
-
+  console.log('debug project:', project);
   return (
     <div className="project-page">
       <div className="navigations">
@@ -39,13 +28,13 @@ const ProjectComponent = (props) => {
             }}
             enableControls={false}
           >
-            {images.map((img) => (
+            {project.images.map((img) => (
               <GalleryImage style={{filter: 'grayscale(50%)'}} objectFit="contain" key={img.src} src={img.src} />
             ))}
           </Gallery>
 
           <div className="project-title">
-            <h1>Church App SAAS</h1>
+            <h1>{project.title}</h1>
           </div>
         </div>
 
@@ -66,15 +55,17 @@ const ProjectComponent = (props) => {
 
         <div className="row mt-4">
           <div className="col-sm-12 d-flex flex-row justify-content-start">
-            <div className="project-link github-link">
-              <span>Github</span>
-            </div>
-            <div className="project-link demo-link">
-              <span>Demo</span>
-            </div>
-            <div className="project-link prod-link">
-              <span>Visit</span>
-            </div>
+              {project.github ? ( <div className="project-link github-link">
+              <a href={project.github} target='_blank'><span>Github</span></a>
+            </div>) : null}
+
+            {project.demo ? ( <div className="project-link github-link">
+              <a href={project.demo} target='_blank'><span>Demo</span></a>
+            </div>) : null}
+
+            {project.prod ? ( <div className="project-link github-link">
+              <a href={project.prod} target='_blank'><span>Visit</span></a>
+            </div>) : null}
           </div>
         </div>
       </div>
@@ -82,4 +73,8 @@ const ProjectComponent = (props) => {
   );
 };
 
-export default withRouter(ProjectComponent);
+const mapStateToProps = (state, ownProps) => ({
+  project: selectProject(ownProps.match.params.id)(state)
+})
+
+export default connect(mapStateToProps, null)(withRouter(ProjectComponent));

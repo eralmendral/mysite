@@ -21,12 +21,11 @@ function App(props) {
   return (
     <AuthProvider>
       <Router>
-     
         <Route exact path="/" component={HomeComponent} />
         <PrivateRoute path="/dashboard" component={DashboardComponent} />
         <Route exact path="/projects/:id" component={ProjectComponent} />
         <Route path="/login" component={LoginComponent} />
-        <Redirect from="*" to='/login' />
+        <Redirect from="*" to='/' />
       </Router>
     </AuthProvider>
   );

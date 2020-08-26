@@ -1,17 +1,21 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { Container, Card } from 'react-bootstrap'
+import { connect } from 'react-redux'
+import { selectProjectList } from '../../redux/projects/project.selectors'
 
 const ProjectsComponent = (props) =>{
-    const showProject = (e) => {
-       props.history.push('/projects/1');
+    const showProject = (id) => {
+       props.history.push('/projects/' +id);
     }
+
+    console.log('projects:', props.projects);
 
     return  (
         <div className="project">
             <h3 className="text-center mt-5 sectionTitle">Projects</h3>
             <Container  className="projects-container">
-                <Card className='project-card' style={{ width: '18rem' }} onClick={() => showProject()}>
+                <Card className='project-card' style={{ width: '18rem' }} onClick={(id) => showProject('qSzLiWWWn9o3wDpPuM7E')}>
                     <Card.Img className="img-bw" variant="top" src="https://static.dribbble.com/users/1720295/screenshots/13999365/media/759000ad4ca08d4d09c6511d77d1e7df.png" />
                     <Card.Body className="bg-dark text-white">
                         <Card.Title>Church App SAAS</Card.Title>
@@ -77,4 +81,8 @@ const ProjectsComponent = (props) =>{
     )
 }
 
-export default withRouter(ProjectsComponent);
+const mapStateToProps = (state) => ({
+    projects: selectProjectList(state)
+})
+
+export default connect(mapStateToProps, null)(withRouter(ProjectsComponent));
