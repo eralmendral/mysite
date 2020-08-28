@@ -4,79 +4,32 @@ import { Container, Card } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { selectProjectList } from '../../redux/projects/project.selectors'
 
-const ProjectsComponent = (props) =>{
-   
+const ProjectsComponent = ({ projects, history }) =>{
     const showProject = (id) => {
-       props.history.push('/projects/' +id);
+     history.push('/projects/' +id);
     }
 
+    const shortDescription = (text) => {
+        return text.length > 35 ? text.slice(0, 35) + ' ...' : text;
+    }
     
-
     return  (
         <div className="project">
             <h3 className="text-center mt-5 sectionTitle">Projects</h3>
             <Container  className="projects-container">
-                <Card className='project-card' style={{ width: '18rem' }} onClick={(id) => showProject('qSzLiWWWn9o3wDpPuM7E')}>
-                    <Card.Img className="img-bw" variant="top" src="https://static.dribbble.com/users/1720295/screenshots/13999365/media/759000ad4ca08d4d09c6511d77d1e7df.png" />
-                    <Card.Body className="bg-dark text-white">
-                        <Card.Title>Church App SAAS</Card.Title>
-                        <Card.Text>
-                        A Web and Desktop Software platform that enable church activities to be digitalized.
-                        </Card.Text>
-                        <Card.Link href="https://github.com/eralmendral/churchapp" target="_blank" onClick={(e) => e.stopPropagation()}><i className="fab fa-github fa-2x project-card-link" title="github repository" aria-hidden="true"></i></Card.Link>
-                        <Card.Link href="#" onClick={(e) => e.stopPropagation() }><i className="fas fa-link fa-2x project-card-link" title="url" aria-hidden="true"></i></Card.Link>
-                    </Card.Body>
-                </Card>
-
-                <Card className='project-card' style={{ width: '18rem' }} onClick={() => showProject()}>
-                    <Card.Img className="img-bw" variant="top" src="https://static.dribbble.com/users/1720295/screenshots/13999365/media/759000ad4ca08d4d09c6511d77d1e7df.png" />
-                    <Card.Body className="bg-dark text-white">
-                        <Card.Title>Church App SAAS</Card.Title>
-                        <Card.Text>
-                        A Web and Desktop Software platform that enable church activities to be digitalized.
-                        </Card.Text>
-                        <Card.Link href="https://github.com/eralmendral/churchapp" target="_blank" onClick={(e) => e.stopPropagation()}><i className="fab fa-github fa-2x project-card-link" title="github repository" aria-hidden="true"></i></Card.Link>
-                        <Card.Link href="#" onClick={(e) => e.stopPropagation() }><i className="fas fa-link fa-2x project-card-link" title="url" aria-hidden="true"></i></Card.Link>
-                    </Card.Body>
-                </Card>
-
-
-                <Card className='project-card' style={{ width: '18rem' }} onClick={() => showProject()}>
-                    <Card.Img className="img-bw" variant="top" src="https://static.dribbble.com/users/1720295/screenshots/13999365/media/759000ad4ca08d4d09c6511d77d1e7df.png" />
-                    <Card.Body className="bg-dark text-white">
-                        <Card.Title>Church App SAAS</Card.Title>
-                        <Card.Text>
-                        A Web and Desktop Software platform that enable church activities to be digitalized.
-                        </Card.Text>
-                        <Card.Link href="https://github.com/eralmendral/churchapp" target="_blank" onClick={(e) => e.stopPropagation()}><i className="fab fa-github fa-2x project-card-link" title="github repository" aria-hidden="true"></i></Card.Link>
-                        <Card.Link href="#" onClick={(e) => e.stopPropagation() }><i className="fas fa-link fa-2x project-card-link" title="url" aria-hidden="true"></i></Card.Link>
-                    </Card.Body>
-                </Card>
-
-                <Card className='project-card' style={{ width: '18rem' }} onClick={() => showProject()}>
-                    <Card.Img className="img-bw" variant="top" src="https://static.dribbble.com/users/1720295/screenshots/13999365/media/759000ad4ca08d4d09c6511d77d1e7df.png" />
-                    <Card.Body className="bg-dark text-white">
-                        <Card.Title>Church App SAAS</Card.Title>
-                        <Card.Text>
-                        A Web and Desktop Software platform that enable church activities to be digitalized.
-                        </Card.Text>
-                        <Card.Link href="https://github.com/eralmendral/churchapp" target="_blank" onClick={(e) => e.stopPropagation()}><i className="fab fa-github fa-2x project-card-link" title="github repository" aria-hidden="true"></i></Card.Link>
-                        <Card.Link href="#" onClick={(e) => e.stopPropagation() }><i className="fas fa-link fa-2x project-card-link" title="url" aria-hidden="true"></i></Card.Link>
-                    </Card.Body>
-                </Card>
-
-
-                <Card className='project-card' style={{ width: '18rem' }} onClick={() => showProject()}>
-                    <Card.Img className="img-bw" variant="top" src="https://static.dribbble.com/users/1720295/screenshots/13999365/media/759000ad4ca08d4d09c6511d77d1e7df.png" />
-                    <Card.Body className="bg-dark text-white">
-                        <Card.Title>Church App SAAS</Card.Title>
-                        <Card.Text>
-                        A Web and Desktop Software platform that enable church activities to be digitalized.
-                        </Card.Text>
-                        <Card.Link href="https://github.com/eralmendral/churchapp" target="_blank" onClick={(e) => e.stopPropagation()}><i className="fab fa-github fa-2x project-card-link" title="github repository" aria-hidden="true"></i></Card.Link>
-                        <Card.Link href="#" onClick={(e) => e.stopPropagation() }><i className="fas fa-link fa-2x project-card-link" title="url" aria-hidden="true"></i></Card.Link>
-                    </Card.Body>
-                </Card>
+            { Object.keys(projects).map((key, i) => (
+                <Card className='project-card' style={{ width: '18rem' }} onClick={(id) => showProject(projects[key].id)}>
+                 <Card.Img className="img-bw" variant="top" src={projects[key].thumbnail} />
+                 <Card.Body className="bg-dark text-white">
+                     <Card.Title>{ projects[key].title }</Card.Title>
+                     <Card.Text>
+                        { shortDescription(projects[key].description) }
+                     </Card.Text>
+                     { projects[key].github ? <Card.Link href={projects[key].github} target="_blank" onClick={(e) => e.stopPropagation()}><i className="fab fa-github fa-2x project-card-link" title="github repository" aria-hidden="true"></i></Card.Link> : ''}
+                     { projects[key].demo ? <Card.Link href={projects[key].demo} target="_blank" onClick={(e) => e.stopPropagation() }><i className="fas fa-link fa-2x project-card-link" title="url" aria-hidden="true"></i></Card.Link> : ''}
+                 </Card.Body>
+             </Card>
+            ))}
             </Container>
         </div>
     )

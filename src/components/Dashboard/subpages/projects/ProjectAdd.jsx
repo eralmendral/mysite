@@ -20,27 +20,112 @@ function ProjectAdd({ project, match, history, addProject }) {
   const id = uuidv4(); // projectId
   const [form] = Form.useForm();
   const { Option } = Select;
+
+  
+  const [date, setDate] = useState(new Date());
+  const [status, setStatus] = useState("current");
   const [thumbnailUrl, setThumbnailUrl] = useState(null);
   const [imagesUrls, setImagesUrls] = useState([]);
    
-  const onSubmit = (event) => {
+  const onSubmit = (values) => {
+    const data = {
+      status,
+      date,
+    };
+    
 
+    for (const [key, value] of Object.entries(values)) {
+      if (value) {
+        data[key] = value;
+      }
+    }
+
+    if (thumbnailUrl) {
+      data["thumbnail"] = thumbnailUrl;
+    }
+
+    if (imagesUrls.length > 0) {
+      data["images"] = [];
+      imagesUrls.forEach((image) => {
+        data["images"].push(image);
+      });
+    }
+
+    addProject(data);
+    afterSubmit();
   }
 
-  const handleUploadThumbnail = () => {
+  const getThumbnailUrl = (url) => {
+    setThumbnailUrl(url);
+  };
 
+  const getImagesUrls = (url) => {
+    let images = imagesUrls;
+    images.push(url);
+    setImagesUrls([...images]);
+  };
+
+  const afterSubmit = () => {
+    toast.success('Project Added', {
+      closeButton: true,
+      hideProgressBar: true,
+    });
+
+    setThumbnailUrl("");
+    setImagesUrls([]);
+    form.resetFields();
+    history.push("/dashboard/projects");
   }
 
-  const handleUploadImages = () => {
+  const uploadImage = (event, index, path) => {
+    const image = event.target.files[index];
 
+    if (image) {
+      const folderPath =  `${id}/${path}/${index}${id}/${image.name}`;
+      const imagePath =   `/${path}/${index}${id}/${image.name}`;
+      const storageRef =  id;
+      const uploadTask = storage.ref(folderPath).put(image);
+
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {},
+        (error) => {
+          console.log(error);
+        },
+        () => {
+          storage
+            .ref(storageRef)
+            .child(imagePath)
+            .getDownloadURL()
+            .then((url) => {
+              if (path === "thumbnail") {
+                getThumbnailUrl(url);
+              }
+
+              if (path === "images") {
+                getImagesUrls(url);
+              }
+            });
+        }
+      );
+    }
+  };
+  const handleUploadThumbnail = (event) => {
+    uploadImage(event, 0, "thumbnail");
   }
 
-  const onOkDate = () => {
-
+  const handleUploadImages = (event) => {
+    for (let i = 0; i < event.target.files.length; i++) {
+      uploadImage(event, i, "images");
+    }
   }
 
-  const handleStatusChange = () => {
+  const onOkDate = (value) => {
+    setDate(value ? value.toDate() : null);
+  }
 
+  const handleStatusChange = (value) => {
+    setStatus(value);
   }
 
   return (

@@ -4,12 +4,14 @@ import { Gallery, GalleryImage } from "react-gesture-gallery";
 import { selectProject } from '../../../redux/projects/project.selectors'
 import { connect } from "react-redux";
 const ProjectComponent = ({ project, history }) => {
-  if(!project || !project.hasOwnProperty('images')){
+  if(!project || (!project.hasOwnProperty('images') && !project.hasOwnProperty('thumbnail'))){
     history.push('/')
   }
 
 
   const [index, setIndex] = React.useState(0);
+  const images = [project.thumbnail, project.thumbnail]
+  console.log('iamges:', images)
   console.log('debug project:', project);
   return (
     <div className="project-page">
@@ -28,10 +30,12 @@ const ProjectComponent = ({ project, history }) => {
             onRequestChange={(i) => {
               setIndex(i);
             }}
-            enableControls={false}
+            enableControls={true}
+            enableIndicators={true}
+            objectFit='cover'
           >
-            {project.images.map((img) => (
-              <GalleryImage style={{filter: 'grayscale(50%)'}} objectFit="contain" key={img.src} src={img.src} />
+            {images.map((img) => (
+              <GalleryImage style={{filter: 'grayscale(50%)'}} objectFit="contain" key={img} src={img} />
             ))}
           </Gallery>
 
@@ -43,31 +47,24 @@ const ProjectComponent = ({ project, history }) => {
         <div className="row mt-5">
           <div className="col-sm-12">
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem
-              provident mole stias impedit aspernatur vero voluptatem? Ea atque
-              unde inventore! Laudantium, eius rerum ! Consequatur eveniet
-              molestiae earum sit ea? Beatae nobis debitis earum velit
-              molestiae, praesentium ducimus offic iis totam placeat optio
-              adipisci consequatur architecto sunt quisquam repellendus,
-              expedita rerum, fuga mollitia aperiam maiores. Autem facilis
-              assumenda deleniti sapiente maiores totam necessitatibus eaque
+              { project.description }
             </p>
           </div>
         </div>
 
         <div className="row mt-4">
           <div className="col-sm-12 d-flex flex-row justify-content-start">
-              {project.github ? ( <div className="project-link github-link">
-              <a href={project.github} target='_blank'><span>Github</span></a>
-            </div>) : null}
+              {project.github ? ( <a className="project-link github-link" href={project.github} target='_blank'>
+              <span>Github</span>
+            </a>) : null}
 
-            {project.demo ? ( <div className="project-link github-link">
-              <a href={project.demo} target='_blank'><span>Demo</span></a>
-            </div>) : null}
+            {project.demo ? ( <a className="project-link github-link" href={project.demo} target='_blank'>
+              <span>Demo</span>
+            </a>) : null}
 
-            {project.prod ? ( <div className="project-link github-link">
-              <a href={project.prod} target='_blank'><span>Visit</span></a>
-            </div>) : null}
+            {project.prod ? ( <a className="project-link github-link" href={project.prod} target='_blank'>
+              <span>Visit</span>
+            </a>) : null}
           </div>
         </div>
       </div>
