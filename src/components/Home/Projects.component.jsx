@@ -5,11 +5,12 @@ import { connect } from 'react-redux'
 import { selectProjectList } from '../../redux/projects/project.selectors'
 
 const ProjectsComponent = (props) =>{
+   
     const showProject = (id) => {
        props.history.push('/projects/' +id);
     }
 
-    console.log('projects:', props.projects);
+    
 
     return  (
         <div className="project">

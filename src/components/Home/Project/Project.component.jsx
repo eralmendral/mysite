@@ -4,9 +4,11 @@ import { Gallery, GalleryImage } from "react-gesture-gallery";
 import { selectProject } from '../../../redux/projects/project.selectors'
 import { connect } from "react-redux";
 const ProjectComponent = ({ project, history }) => {
-  if(!project){
+  if(!project || !project.hasOwnProperty('images')){
     history.push('/')
   }
+
+
   const [index, setIndex] = React.useState(0);
   console.log('debug project:', project);
   return (
@@ -33,8 +35,8 @@ const ProjectComponent = ({ project, history }) => {
             ))}
           </Gallery>
 
-          <div className="project-title">
-            <h1>{project.title}</h1>
+          <div className="project-title mt-3">
+            <h1 className="mt-4">{project.title}</h1>
           </div>
         </div>
 
