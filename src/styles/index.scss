@@ -179,8 +179,8 @@ label:focus,
 
       .img-bw {
         height: 210px;
-        -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
-        filter: grayscale(100%);
+        -webkit-filter: grayscale(60%); /* Safari 6.0 - 9.0 */
+        filter: grayscale(60%);
       }
 
       .project-card-link {
@@ -308,9 +308,12 @@ label:focus,
   .contactfield {
     border-radius: 0px;
     margin-top: 10px;
+    outline: none !important;
+    border: none !important;
     &:focus {
+      outline: none !important;
       box-shadow: none;
-      border: 1px solid;
+      border:none !important;
     }
   }
 

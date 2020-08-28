@@ -64,7 +64,13 @@ export function* addProject() {
 
 export function* updateProjectAsync(action) {
     try {
-        // yield call(rsf.firestore.addDocument, 'projects', action.payload);
+        console.log('saga:', action.payload);
+        yield call(
+            rsf.firestore.setDocument,
+            'projects/' + action.payload.id ,
+            action.payload,
+            {merge: true}
+          );
         yield call(fetchProjectsAsync)
     } catch (error) {
         console.log('Error updating project.', error)
@@ -74,7 +80,7 @@ export function* updateProjectAsync(action) {
 export function* updateProject() {
     yield takeLatest(
         ProjectActionTypes.UPDATE_PROJECT,
-        addProjectAsync
+        updateProjectAsync
     )
 }
 

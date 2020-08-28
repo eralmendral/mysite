@@ -12,6 +12,7 @@ import ClientAddEdit from './subpages/clients/ClientAddEdit';
 import ProjectList from "./subpages/projects/ProjectList";
 import ProjectAddEdit from "./subpages/projects/ProjectAddEdit";
 import ProjectAdd from "./subpages/projects/ProjectAdd";
+import ProjectEdit from "./subpages/projects/ProjectEdit";
 
 const { Header, Content } = Layout;
 class Dashboard extends React.Component {
@@ -31,7 +32,7 @@ class Dashboard extends React.Component {
                 <Route exact path={`${this.props.match.url}`} component={DashboardHome} />
                 <Route exact path={`${this.props.match.url}/projects`} component={ProjectList} />
                 <Route path={`${this.props.match.url}/projects/add`} component={ProjectAdd} />
-                <Route path={`${this.props.match.url}/projects/edit/:projectId`} component={ProjectAddEdit} />
+                <Route path={`${this.props.match.url}/projects/edit/:projectId`} component={ProjectEdit} />
 
                 <Route exact path={`${this.props.match.url}/clients`} component={ClientList} />
                 <Route path={`${this.props.match.url}/clients/add`} component={ClientAddEdit} />

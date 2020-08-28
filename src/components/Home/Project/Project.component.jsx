@@ -8,11 +8,10 @@ const ProjectComponent = ({ project, history }) => {
     history.push('/')
   }
 
-
   const [index, setIndex] = React.useState(0);
-  const images = [project.thumbnail, project.thumbnail]
-  console.log('iamges:', images)
-  console.log('debug project:', project);
+  const projectImages = project.hasOwnProperty('images') ? project.images ? project.images : [] : [];
+  const images = [project.thumbnail, ...projectImages ]
+
   return (
     <div className="project-page">
       <div className="navigations">
@@ -35,7 +34,7 @@ const ProjectComponent = ({ project, history }) => {
             objectFit='cover'
           >
             {images.map((img) => (
-              <GalleryImage style={{filter: 'grayscale(50%)'}} objectFit="contain" key={img} src={img} />
+              <GalleryImage style={{filter: 'saturation(2))', maxHeight: '500px'}} objectFit="contain" key={img} src={img} />
             ))}
           </Gallery>
 
