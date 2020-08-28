@@ -48,8 +48,14 @@ export function* deleteProject() {
 
 export function* addProjectAsync(action) {
     try {
-        yield call(rsf.firestore.addDocument, 'projects', action.payload);
+        yield call(
+            rsf.firestore.setDocument,
+            'projects/' + action.payload.id,
+            action.payload,
+          );
+
         yield call(fetchProjectsAsync)
+
     } catch (error) {
         console.log('Error adding project.', error)
     }
@@ -63,8 +69,8 @@ export function* addProject() {
 }
 
 export function* updateProjectAsync(action) {
+    console.log('action saga update:', action)
     try {
-        console.log('saga:', action.payload);
         yield call(
             rsf.firestore.setDocument,
             'projects/' + action.payload.id ,

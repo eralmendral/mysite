@@ -10,7 +10,6 @@ import ClientList from './subpages/clients/ClientList'
 import ClientAddEdit from './subpages/clients/ClientAddEdit';
 
 import ProjectList from "./subpages/projects/ProjectList";
-import ProjectAddEdit from "./subpages/projects/ProjectAddEdit";
 import ProjectAdd from "./subpages/projects/ProjectAdd";
 import ProjectEdit from "./subpages/projects/ProjectEdit";
 

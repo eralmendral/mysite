@@ -68,7 +68,7 @@ class ContactComponent extends React.Component {
         <h3 className="text-center mt-5 mb-4 sectionTitle">Contact</h3>
         <div className="contact-info">
           <ul>
-            <li>+639751321678</li>
+            <li>+639 75 132 1678</li>
             <li>
               <a href="mailto: ealmendral@gmail.com">ealmendral@gmail.com</a>
             </li>

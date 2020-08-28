@@ -1,17 +1,19 @@
 import React from "react";
-import { Link, withRouter } from "react-router-dom";
+import { Link, withRouter, Redirect } from "react-router-dom";
 import { Gallery, GalleryImage } from "react-gesture-gallery";
 import { selectProject } from '../../../redux/projects/project.selectors'
 import { connect } from "react-redux";
-const ProjectComponent = ({ project, history }) => {
-  if(!project || (!project.hasOwnProperty('images') && !project.hasOwnProperty('thumbnail'))){
+const ProjectComponent = ({ project, history, match }) => {
+  if(!project) {
     history.push('/')
   }
 
   const [index, setIndex] = React.useState(0);
-  const projectImages = project.hasOwnProperty('images') ? project.images ? project.images : [] : [];
-  const images = [project.thumbnail, ...projectImages ]
+  const projectImages = project ? project.images ? project.images : [] : [];
+  const projectThumbnail = project ? project.thumbnail :  null;
+  const images = [projectThumbnail, ...projectImages]
 
+ try{
   return (
     <div className="project-page">
       <div className="navigations">
@@ -69,6 +71,9 @@ const ProjectComponent = ({ project, history }) => {
       </div>
     </div>
   );
+ } catch(error) {
+   return <Redirect to="/" />
+ }
 };
 
 const mapStateToProps = (state, ownProps) => ({

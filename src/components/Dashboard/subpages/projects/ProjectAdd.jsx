@@ -29,6 +29,7 @@ function ProjectAdd({ project, match, history, addProject }) {
    
   const onSubmit = (values) => {
     const data = {
+      id,
       status,
       date,
     };
@@ -149,7 +150,7 @@ function ProjectAdd({ project, match, history, addProject }) {
             <Form.Item
               name="client"
               rules={[
-                { required: true, message: "Please input title of project!" },
+                { required: true, message: "Please input client of project!" },
               ]}
             >
               <Input

@@ -99,6 +99,7 @@ function ProjectEdit({ project, match, history, updateProject }) {
   // Form Submited
   const onSubmit = (values) => {
     const data = {
+      id: project.id,
       status,
       date,
     };
