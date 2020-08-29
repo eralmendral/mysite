@@ -275,10 +275,12 @@ label:focus,
 .contact {
   display: flex;
   flex-direction: column;
-  height: 70vh;
+  height: 80vh;
+  min-height: 420px;
   width: 100%;
   background: rgb(17, 6, 10);
-
+  padding-bottom: 100px !important;
+  
   .contact-info {
     align-self: center;
     ul {
