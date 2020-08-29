@@ -11,7 +11,7 @@ const ProjectsComponent = ({ projects, projectIsFetching, history }) =>{
     }
 
     const shortDescription = (text) => {
-        return text.length > 35 ? text.slice(0, 35) + ' ...' : text;
+        return text.length > 50 ? text.slice(0, 50) + ' ...' : text;
     }
 
     const projectsDiv = projects ? <Container  className="projects-container">

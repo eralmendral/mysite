@@ -1,11 +1,12 @@
 import { takeLatest, call, put, all } from 'redux-saga/effects';
 import ProjectActionTypes from './project.actiontypes';
 import { fetchProjectsFailure, fetchProjectsSuccess } from './project.actions';
-import { rsf } from '../../config/fbConfig';
+import { rsf , db} from '../../config/fbConfig';
 
 export function* fetchProjectsAsync() {
     try {
-        const snapshot = yield call(rsf.firestore.getCollection, 'projects');
+        const colRef = db.collection('projects');
+        const snapshot = yield call(rsf.firestore.getCollection, colRef.orderBy('date', 'asc'));
         let projects;
         snapshot.forEach(project => {
             projects = {
@@ -69,7 +70,6 @@ export function* addProject() {
 }
 
 export function* updateProjectAsync(action) {
-    console.log('action saga update:', action)
     try {
         yield call(
             rsf.firestore.setDocument,
