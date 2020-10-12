@@ -17,4 +17,5 @@ export const firebaseConfig = {
 
 export const firebaseApp = firebase.initializeApp(firebaseConfig)
 export const storage = firebase.storage();
+export const db = firebase.firestore();
 export const rsf = new ReduxSagaFirebase(firebaseApp)

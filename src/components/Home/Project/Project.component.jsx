@@ -1,18 +1,19 @@
 import React from "react";
-import { Link, withRouter } from "react-router-dom";
+import { Link, withRouter, Redirect } from "react-router-dom";
 import { Gallery, GalleryImage } from "react-gesture-gallery";
 import { selectProject } from '../../../redux/projects/project.selectors'
 import { connect } from "react-redux";
-const ProjectComponent = ({ project, history }) => {
-  if(!project || (!project.hasOwnProperty('images') && !project.hasOwnProperty('thumbnail'))){
+const ProjectComponent = ({ project, history, match }) => {
+  if(!project) {
     history.push('/')
   }
 
-
   const [index, setIndex] = React.useState(0);
-  const images = [project.thumbnail, project.thumbnail]
-  console.log('iamges:', images)
-  console.log('debug project:', project);
+  const projectImages = project ? project.images ? project.images : [] : [];
+  const projectThumbnail = project ? project.thumbnail :  null;
+  const images = [projectThumbnail, ...projectImages]
+
+ try{
   return (
     <div className="project-page">
       <div className="navigations">
@@ -35,7 +36,7 @@ const ProjectComponent = ({ project, history }) => {
             objectFit='cover'
           >
             {images.map((img) => (
-              <GalleryImage style={{filter: 'grayscale(50%)'}} objectFit="contain" key={img} src={img} />
+              <GalleryImage style={{filter: 'saturation(2))', maxHeight: '500px'}} objectFit="contain" key={img} src={img} />
             ))}
           </Gallery>
 
@@ -70,6 +71,9 @@ const ProjectComponent = ({ project, history }) => {
       </div>
     </div>
   );
+ } catch(error) {
+   return <Redirect to="/" />
+ }
 };
 
 const mapStateToProps = (state, ownProps) => ({

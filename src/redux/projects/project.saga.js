@@ -1,11 +1,12 @@
 import { takeLatest, call, put, all } from 'redux-saga/effects';
 import ProjectActionTypes from './project.actiontypes';
 import { fetchProjectsFailure, fetchProjectsSuccess } from './project.actions';
-import { rsf } from '../../config/fbConfig';
+import { rsf , db} from '../../config/fbConfig';
 
 export function* fetchProjectsAsync() {
     try {
-        const snapshot = yield call(rsf.firestore.getCollection, 'projects');
+        const colRef = db.collection('projects');
+        const snapshot = yield call(rsf.firestore.getCollection, colRef.orderBy('date', 'asc'));
         let projects;
         snapshot.forEach(project => {
             projects = {
@@ -48,8 +49,14 @@ export function* deleteProject() {
 
 export function* addProjectAsync(action) {
     try {
-        yield call(rsf.firestore.addDocument, 'projects', action.payload);
+        yield call(
+            rsf.firestore.setDocument,
+            'projects/' + action.payload.id,
+            action.payload,
+          );
+
         yield call(fetchProjectsAsync)
+
     } catch (error) {
         console.log('Error adding project.', error)
     }
@@ -64,7 +71,12 @@ export function* addProject() {
 
 export function* updateProjectAsync(action) {
     try {
-        // yield call(rsf.firestore.addDocument, 'projects', action.payload);
+        yield call(
+            rsf.firestore.setDocument,
+            'projects/' + action.payload.id ,
+            action.payload,
+            {merge: true}
+          );
         yield call(fetchProjectsAsync)
     } catch (error) {
         console.log('Error updating project.', error)
@@ -74,7 +86,7 @@ export function* updateProjectAsync(action) {
 export function* updateProject() {
     yield takeLatest(
         ProjectActionTypes.UPDATE_PROJECT,
-        addProjectAsync
+        updateProjectAsync
     )
 }
 

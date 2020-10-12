@@ -1,6 +1,10 @@
 import React from "react";
+import { selectAllProjectCount, selectPendingProjectCount, selectCurrentProjectCount, selectFinishedProjectCount } from "../../../../redux/projects/project.selectors";
+import { selectAllClientCount } from "../../../../redux/clients/client.selectors";
+
 import { Card } from "antd";
-function DashboardHome() {
+import { connect } from "react-redux";
+function DashboardHome({ projectsCount, clientsCount, pendingProjectsCount, currentProjectsCount, finshedProjectsCount }) {
   return (
     <div className="container-fluid">
       <div className="row">
@@ -13,7 +17,7 @@ function DashboardHome() {
             bordered={false}
           >
             <h3>Pending</h3>
-            <h1>2</h1>
+            <h1>{ pendingProjectsCount ? pendingProjectsCount : 0 }</h1>
           </Card>
         </div>
         <div className="col-sm-4">
@@ -22,7 +26,7 @@ function DashboardHome() {
             bordered={false}
           >
             <h3>Current</h3>
-            <h1>1</h1>
+            <h1>{ currentProjectsCount ? currentProjectsCount : 0 }</h1>
           </Card>
         </div>
         <div className="col-sm-4">
@@ -31,14 +35,14 @@ function DashboardHome() {
             bordered={false}
           >
             <h3>Finished</h3>
-            <h1>5</h1>
+            <h1>{ finshedProjectsCount ? finshedProjectsCount : 0 }</h1>
           </Card>
         </div>
       </div>
 
       <div className="row mt-4">
         <div className="col-sm-12">
-        <b>All</b>
+          <b>All</b>
         </div>
         <div className="col-sm-6 d-flex justify-content-center">
           <Card
@@ -46,7 +50,7 @@ function DashboardHome() {
             bordered={false}
           >
             <h3>Projects</h3>
-            <h1>4</h1>
+            <h1>{projectsCount ? projectsCount : 0}</h1>
           </Card>
         </div>
         <div className="col-sm-6 d-flex justify-content-center">
@@ -55,7 +59,7 @@ function DashboardHome() {
             bordered={false}
           >
             <h3>Clients</h3>
-            <h1>2</h1>
+            <h1>{clientsCount ? clientsCount : 0}</h1>
           </Card>
         </div>
       </div>
@@ -63,4 +67,11 @@ function DashboardHome() {
   );
 }
 
-export default DashboardHome;
+const mapStateToProps = (state) => ({
+  projectsCount: selectAllProjectCount(state),
+  clientsCount: selectAllClientCount(state),
+  pendingProjectsCount: selectPendingProjectCount(state),
+  currentProjectsCount: selectCurrentProjectCount(state),
+  finshedProjectsCount: selectFinishedProjectCount(state),
+});
+export default connect(mapStateToProps, null)(DashboardHome);
