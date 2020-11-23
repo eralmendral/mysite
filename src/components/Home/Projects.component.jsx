@@ -16,7 +16,7 @@ const ProjectsComponent = ({ projects, projectIsFetching, history }) =>{
 
     const projectsDiv = projects ? <Container  className="projects-container">
     { Object.keys(projects).map((key, i) => (
-        <Card className='project-card' style={{ width: '20rem' }} onClick={(id) => showProject(projects[key].id)}>
+        <Card className='project-card' onClick={(id) => showProject(projects[key].id)}>
          <Card.Img className="img-bw" variant="top" src={projects[key].thumbnail} />
          <Card.Body className="bg-dark text-white">
              <Card.Title>{ projects[key].title }</Card.Title>
@@ -32,7 +32,7 @@ const ProjectsComponent = ({ projects, projectIsFetching, history }) =>{
     
     return  (
         <div className="project">
-            <h3 className="text-center mt-5 sectionTitle">Projects</h3>
+            <h3 className="text-center mt-5 sectionTitle">Personal Projects</h3>
             {projectIsFetching ? <Spinner animation="border" size="lg" className="my-5" /> : projectsDiv } 
         </div>
     )

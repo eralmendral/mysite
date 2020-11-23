@@ -14,6 +14,7 @@ const HomeComponent = () => (
                 <Link to="/login"> <i className="fa fa-user-circle fa-2x dashboardlink" aria-hidden="true"></i></Link>
                 <ParticleEffect/>
                     <div className="landingText">
+                        <img src="" alt=""/>
                         <ReactTypingEffect
                             className="introduction"
                             text={["Hello, I'm Eric.", "I design and build software"]}

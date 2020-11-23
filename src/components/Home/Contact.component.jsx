@@ -84,7 +84,7 @@ class ContactComponent extends React.Component {
           </ul>
         </div>
 
-        <div className="contact-me mt-3">
+        <div className="contact-me mt-4">
           <Container>
             <Form id="emailForm" onSubmit={this.emailSent}>
               <Row>

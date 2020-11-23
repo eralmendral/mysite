@@ -6,7 +6,6 @@ $theme-gradient: linear-gradient(
   rgb(195, 41, 93)
 ) !important;
 
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -179,9 +178,11 @@ label:focus,
       cursor: pointer;
 
       .img-bw {
-        height: 210px;
-        -webkit-filter: grayscale(60%); /* Safari 6.0 - 9.0 */
-        filter: grayscale(70%);
+        height: 200px;
+        background-size: cover;
+        background-position: center center;
+        -webkit-filter: grayscale(30%); /* Safari 6.0 - 9.0 */
+        filter: grayscale(30%);
       }
 
       .project-card-link {
@@ -210,7 +211,7 @@ label:focus,
 
 .project-link {
   display: block;
-  border: 1px solid rgb(245, 92, 92);;
+  border: 1px solid rgb(245, 92, 92);
   margin: 0px 10px;
   padding: 10px;
   width: 100px;
@@ -278,9 +279,10 @@ label:focus,
   height: 80vh;
   min-height: 420px;
   width: 100%;
-  background: rgb(17, 6, 10);
-  padding-bottom: 100px !important;
-  
+  background: $base-dark;
+  padding-bottom: 40px !important;
+  padding-top: 40px;
+
   .contact-info {
     align-self: center;
     ul {
@@ -316,7 +318,7 @@ label:focus,
     &:focus {
       outline: none !important;
       box-shadow: none;
-      border:none !important;
+      border: none !important;
     }
   }
 
@@ -439,11 +441,7 @@ label:focus,
 
   .projects-container {
     justify-content: center !important;
-
-    .project-card {
-      margin: 0;
-      width: 250px !important;
-    }
+    padding-bottom: 40px;
   }
 
   .contact {
