@@ -11,7 +11,11 @@ import FooterComponent from './Footer.component';
 const HomeComponent = () => (
        <div className="home">
            <div className="landing">
-                <Link to="/login"> <i className="fa fa-user-circle fa-2x dashboardlink" aria-hidden="true"></i></Link>
+              <div className="landingText">
+              <h1 className="introduction">Completely Rebuilding from Scratch</h1>
+                <p style={{ color: '#fff'}}> (may take 1-2 days)</p>
+              </div>
+                {/* <Link to="/login"> <i className="fa fa-user-circle fa-2x dashboardlink" aria-hidden="true"></i></Link>
                 <ParticleEffect/>
                     <div className="landingText">
                         <img src="" alt=""/>
@@ -29,12 +33,12 @@ const HomeComponent = () => (
                                 <li><a href={resume}  rel="noopener noreferrer" target="_blank">Resume</a></li>
                             </ul>
                         </div>
-                    </div>
+                    </div> */}
             </div>
-
+{/* 
             <ProjectsComponent/>
             <ContactComponent />
-            <FooterComponent />
+            <FooterComponent /> */}
        </div>
 )
 
